@@ -18,7 +18,7 @@ public class Recursion{
           }
         }
         else{
-          System.out.print(word);
+          System.out.println(word);
         }
     }
 
@@ -40,10 +40,22 @@ public class Recursion{
     *@param letters: the letters you should be using
     */
     public static void printNoDoubleLetterWords(int length,String word,char[]letters){
-      //WRITE THIS METHOD
+      if(length > 0){
+        for (int i = 0; i < letters.length; i++){
+          if (i == 0 || word.charAt(i - 1) != letters[i]){
+            printNoDoubleLetterWords(length - 1, word + letters[i], letters);
+          }
+        }
+      }else{
+        System.out.print(word);
+      }
     }
 
     public static void main(String[] args){
-      printAllWords(3, "");
+      System.out.println("og method: ");
+      printAllWords(3);
+      System.out.println("no double method: ");
+      char[] letters = {'a', 'a', 'd', 'd', 'e', 'c', 'c', 'b', 'b'};
+      printNoDoubleLetterWords(3, letters);
     }
 }
