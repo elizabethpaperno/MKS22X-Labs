@@ -47,7 +47,7 @@ public class Recursion{
           }
         }
       }else{
-        System.out.print(word);
+        System.out.println(word);
       }
     }
 
