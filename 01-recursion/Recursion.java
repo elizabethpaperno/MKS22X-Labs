@@ -42,7 +42,7 @@ public class Recursion{
     public static void printNoDoubleLetterWords(int length,String word,char[]letters){
       if(length > 0){
         for (int i = 0; i < letters.length; i++){
-          if (i == 0 || word.charAt(i - 1) != letters[i]){
+          if (word.length() == 0 || word.charAt(word.length() - 1) != letters[i]){
             printNoDoubleLetterWords(length - 1, word + letters[i], letters);
           }
         }
