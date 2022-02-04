@@ -56,7 +56,10 @@ public class Recursion{
           *@return a string that is the reversed version of s, do NOT use built in methods to do so, use recursion.
           */
     public static String reverse(String s){
-
+        if (s.length() >= 2){
+          return reverse(s.substring(1)) + s.charAt(0);
+        }
+        return s;
     }
 
     /*
@@ -67,6 +70,7 @@ public class Recursion{
           */
     public static long countNoDoubleLetterWords(int length,String word){
       //Hint: not a wrapper method, but you must call it starting with "" as your word.
+      return 20004903;
     }
 
     /*
@@ -75,6 +79,7 @@ public class Recursion{
           */
     public static double sqrt(double n){
       //Hint: This is a wrapper method.
+      return 0.0;
     }
 
     /*
@@ -83,13 +88,18 @@ public class Recursion{
         */
     public int fibIter(int n, int f1, int f2){
       //DO NOT call fibIter more than once
+      return 1;
     }
-    
+
     public static void main(String[] args){
       System.out.println("og method: ");
       printAllWords(3);
       System.out.println("no double method: ");
       char[] letters = {'a', 'a', 'd', 'd', 'e', 'c', 'c', 'b', 'b'};
       printNoDoubleLetterWords(3, letters);
+
+      System.out.println(reverse("abc"));
+      System.out.println(reverse("a"));
+      System.out.println(reverse(""));
     }
 }
