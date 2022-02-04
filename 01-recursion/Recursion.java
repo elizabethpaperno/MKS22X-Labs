@@ -74,7 +74,7 @@ public class Recursion{
       int countNoDoub = 0;
       if(length > 0){
         for (char c = 'a'; c <= 'z'; c++){
-          if (word.length() == 0 || word.charAt(word.length() - 1) != letters[i]){
+          if (word.length() == 0 || word.charAt(word.length() - 1) != c){
             return countNoDoubleLetterWords(length - 1, word + c);
           }
         }
@@ -90,8 +90,15 @@ public class Recursion{
           */
     public static double sqrt(double n){
       //Hint: This is a wrapper method.
+      int guess = 1;
+      if (n == 0){
+        return 0;
+      }
+      if ((Math.pow(guess,2) - Math.pow(n,2))/2){
 
-      return 0.0;
+        return sqrt((n/guess + guess)/guess);
+      }
+      return n;
     }
 
     /*
