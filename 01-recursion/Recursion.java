@@ -68,10 +68,21 @@ public class Recursion{
           *@return the number of words that have no adjacent matching letters using the letters a-z.
           *Repetition allowed except when letters are adjacent.
           */
+
     public static long countNoDoubleLetterWords(int length,String word){
       //Hint: not a wrapper method, but you must call it starting with "" as your word.
-      return 20004903;
+      int countNoDoub = 0;
+      if(length > 0){
+        for (char c = 'a'; c <= 'z'; c++){
+          if (word.length() == 0 || word.charAt(word.length() - 1) != letters[i]){
+            return countNoDoubleLetterWords(length - 1, word + c);
+          }
+        }
+      }else{
+        return 0;
+      }
     }
+
 
     /*
           *@param n any non-negative value you want to take the sqrt of
@@ -79,6 +90,7 @@ public class Recursion{
           */
     public static double sqrt(double n){
       //Hint: This is a wrapper method.
+
       return 0.0;
     }
 
@@ -98,8 +110,11 @@ public class Recursion{
       char[] letters = {'a', 'a', 'd', 'd', 'e', 'c', 'c', 'b', 'b'};
       printNoDoubleLetterWords(3, letters);
 
+      System.out.println("reverse string method testing: ");
       System.out.println(reverse("abc"));
       System.out.println(reverse("a"));
       System.out.println(reverse(""));
+
+
     }
 }
