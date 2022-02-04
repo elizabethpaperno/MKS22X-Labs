@@ -94,7 +94,7 @@ public class Recursion{
       if (n == 0){
         return 0;
       }
-      if ((Math.pow(guess,2) - Math.pow(n,2))/2){
+      if ((Math.pow(guess,2) - Math.pow(n,2))/2 == 0.00001){
 
         return sqrt((n/guess + guess)/guess);
       }
