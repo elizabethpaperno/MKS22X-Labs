@@ -89,14 +89,13 @@ public class Recursion{
           *@return the approximate sqrt of n within a tolerance of 0.001%
           */
 
-    public static double sqrt(double n){
+    public static double sqrt(double n, double guess){
       //Hint: This is a wrapper method.
       if (n == 0){
         return 0;
       }
-      int guess = 1;
-      if ((Math.pow(guess,2) - Math.pow(n,2))/Math.pow(n,2) == 0.00001){
-        return sqrt((n/guess + guess)/guess);
+      if (Math.abs((Math.pow(guess,2) - n)/n) != 0.00001){
+        return sqrt(n, (n/guess + guess)/guess);
       }
       return (n/guess + guess)/guess;
     }
@@ -136,6 +135,6 @@ public class Recursion{
       System.out.println(fibIter(1, 1, 0));
       System.out.println(fibIter(2, 1, 0));
       System.out.println(fibIter(3, 1, 0));
-      System.out.println(sqrt(4));
+      System.out.println(sqrt(4, 1));
     }
 }
