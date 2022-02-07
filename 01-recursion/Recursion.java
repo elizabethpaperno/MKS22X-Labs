@@ -71,23 +71,23 @@ public class Recursion{
 
     public static long countNoDoubleLetterWords(int length,String word){
       //Hint: not a wrapper method, but you must call it starting with "" as your word.
-      int countNoDoub = 0;
       if(length > 0){
+        int countNoDoub = 0;
         for (char c = 'a'; c <= 'z'; c++){
           if (word.length() == 0 || word.charAt(word.length() - 1) != c){
-            return countNoDoubleLetterWords(length - 1, word + c);
+            countNoDoub += countNoDoubleLetterWords(length - 1, word + c);
           }
         }
-      }else{
-        return 0;
+        return countNoDoub;
       }
+      return 1;
     }
 
 
     /*
           *@param n any non-negative value you want to take the sqrt of
           *@return the approximate sqrt of n within a tolerance of 0.001%
-          */
+
     public static double sqrt(double n){
       //Hint: This is a wrapper method.
       int guess = 1;
@@ -100,11 +100,13 @@ public class Recursion{
       }
       return n;
     }
+    */
 
     /*
         *@param n any non-negative value
         *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
         */
+
     public int fibIter(int n, int f1, int f2){
       //DO NOT call fibIter more than once
       return 1;
@@ -122,6 +124,6 @@ public class Recursion{
       System.out.println(reverse("a"));
       System.out.println(reverse(""));
 
-
+      System.out.println(countNoDoubleLetterWords(3, ""));
     }
 }
