@@ -107,24 +107,35 @@ public class Recursion{
         *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
         */
 
-    public int fibIter(int n, int f1, int f2){
+    public static int fibIter(int n, int f1, int f2){
       //DO NOT call fibIter more than once
-      return 1;
+      if (n < 2) {
+        return n;
+      }
+      return fibIter(n-1, f1,f2) + fibIter(n-2, f1,f2);
     }
 
     public static void main(String[] args){
-      System.out.println("og method: ");
+      System.out.println("print all words method: ");
       printAllWords(3);
+
       System.out.println("no double method: ");
       char[] letters = {'a', 'a', 'd', 'd', 'e', 'c', 'c', 'b', 'b'};
       printNoDoubleLetterWords(3, letters);
+
+      System.out.println("count no double method: ");
+      System.out.println(countNoDoubleLetterWords(3, ""));
 
       System.out.println("reverse string method testing: ");
       System.out.println(reverse("abc"));
       System.out.println(reverse("a"));
       System.out.println(reverse(""));
 
-      System.out.println(countNoDoubleLetterWords(3, ""));
+      System.out.println("fibIter method testing: ");
+      System.out.println(fibIter(0, 1, 0));
+      System.out.println(fibIter(1, 1, 0));
+      System.out.println(fibIter(2, 1, 0));
+      System.out.println(fibIter(3, 1, 0));
       System.out.println(sqrt(4));
     }
 }
