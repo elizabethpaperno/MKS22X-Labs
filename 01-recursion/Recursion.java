@@ -137,6 +137,8 @@ public class Recursion{
       System.out.println(fibIter(1, 1, 0));
       System.out.println(fibIter(2, 1, 0));
       System.out.println(fibIter(3, 1, 0));
+      
+      System.out.println("sqrt method testing: ");
       System.out.println(sqrt(4, 1));
     }
 }
