@@ -94,10 +94,12 @@ public class Recursion{
       if (n == 0){
         return 0;
       }
-      if (Math.abs((Math.pow(guess,2) - n)/n) != 0.00001){
-        return sqrt(n, (n/guess + guess)/guess);
+      else if ((Math.abs(n - (guess * guess))/n) > 0.00001){
+        return sqrt(n, (n/guess + guess)/2);
       }
-      return (n/guess + guess)/guess;
+      else {
+        return guess;
+      }
     }
 
 
