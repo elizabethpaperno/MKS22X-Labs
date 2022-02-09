@@ -11,7 +11,13 @@ public class RecursionClasswork{
     No loops are needed -- the recursive calls progress down the array.
   */
   public static boolean groupSum(int start, int[] nums, int target) {
-
+    if (target == 0) {
+      return true;
+    }
+    if (start >= nums.length){
+      return false;
+    }
+    return (groupSum(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target));
   }
 
   /*
