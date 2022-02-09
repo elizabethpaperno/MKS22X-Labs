@@ -94,12 +94,10 @@ public class Recursion{
       if (n == 0){
         return 0;
       }
-      else if ((Math.abs(n - (guess * guess))/n) > 0.00001){
+      if ((Math.abs(n - (guess * guess))/n) > 0.00001){
         return sqrt(n, (n/guess + guess)/2);
       }
-      else {
-        return guess;
-      }
+      return guess;
     }
 
     public static double sqrt(double n){
@@ -145,6 +143,7 @@ public class Recursion{
       System.out.println(fibIter(3, 1, 0));
 
       System.out.println("sqrt method testing: ");
-      System.out.println(sqrt(0));
+      System.out.println(sqrt(4));
+
     }
 }
