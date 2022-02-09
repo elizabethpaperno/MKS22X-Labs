@@ -33,7 +33,7 @@ public class RecursionClasswork{
 
   }
 
-  public static boolean splitArray(int[] nums, int index){
+  public static boolean splitArray(int[] nums, int index, int sum1, int sum2){
     
   }
 
