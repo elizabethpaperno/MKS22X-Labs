@@ -30,11 +30,17 @@ public class RecursionClasswork{
   */
 
   public static boolean splitArray(int[] nums) {
-
+    return splitArray(nums, 0, 0, 0);
   }
 
   public static boolean splitArray(int[] nums, int index, int sum1, int sum2){
-    
+    if (sum1 != sum2){
+      return splitArray(nums, index + 1, sum1 + nums[index], sum2) || splitArray(nums, index + 1, sum1, sum2 + nums[index]);
+    }
+    if (index >= nums.length){
+      return false;
+    }
+    return true;
   }
 
   /*
