@@ -33,6 +33,10 @@ public class RecursionClasswork{
 
   }
 
+  public static boolean splitArray(int[] nums, int index){
+    
+  }
+
   /*
   Given an array of ints, is it possible to choose a group of some of the ints,
   beginning at the start index, such that the group sums to the given target?
