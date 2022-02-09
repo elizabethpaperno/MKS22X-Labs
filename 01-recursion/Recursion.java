@@ -113,10 +113,13 @@ public class Recursion{
 
     public static int fibIter(int n, int f1, int f2){
       //DO NOT call fibIter more than once
-      if (n < 2) {
-        return n;
+      if (n == 1) {
+        return f1;
       }
-      return fibIter(n-1, f1,f2) + fibIter(n-2, f1,f2);
+      if (n > 1){
+        return fibIter(n-1,f1 + f2,f1);
+      }
+      return f2;
     }
 
     public static void main(String[] args){
