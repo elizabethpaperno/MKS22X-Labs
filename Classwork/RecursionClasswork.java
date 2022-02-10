@@ -76,4 +76,17 @@ public class RecursionClasswork{
     }
     return (groupSum5(start + 1, nums, target - nums[start]) || groupSum5(start + 1, nums, target));
   }
+
+  public static boolean splitOdd10(int[] nums, int index, int sum1, int sum2) {
+    if (index < nums.length){
+      return splitOdd10(nums, index + 1, sum1 + nums[index], sum2) || splitOdd10(nums, index + 1, sum1, sum2 + nums[index]);
+    }
+    return ((sum1 % 10 == 0 || sum2 % 10 == 0) && (sum1 % 2 != 0 || sum2 % 2 != 0));
+  }
+
+  public static boolean splitOdd10(int[] nums) {
+    return splitOdd10(nums,0,0,0);
+  }
+
+
 }
