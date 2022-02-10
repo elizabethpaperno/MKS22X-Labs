@@ -57,9 +57,12 @@ public class RecursionClasswork{
   }
 
   public static boolean groupNoAdj(int start, int[] nums, int target) {
-    if (start >= nums.length){
-      return (target == 0);
+    if (target == 0) {
+      return true;
     }
-    return (groupNoAdj(start + 1, nums, target - nums[start]) || groupNoAdj(start + 1, nums, target));
+    if (start >= nums.length){
+      return false;
+    }
+    return (groupNoAdj(start + 2, nums, target - nums[start]) || groupNoAdj(start + 1, nums, target));
   }
 }
