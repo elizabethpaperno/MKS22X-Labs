@@ -21,26 +21,6 @@ public class RecursionClasswork{
   }
 
   /*
-    Given an array of ints, is it possible to divide the ints into two groups,
-    so that the sums of the two groups are the same.
-    Every int must be in one group or the other.
-    Write a recursive helper method that takes whatever arguments you like,
-    and make the initial call to your recursive helper from splitArray().
-    (No loops needed.)
-  */
-
-  public static boolean splitArray(int[] nums) {
-    return splitArray(nums, 0, 0, 0);
-  }
-
-  public static boolean splitArray(int[] nums, int index, int sum1, int sum2){
-    if (index < nums.length){
-      return splitArray(nums, index + 1, sum1 + nums[index], sum2) || splitArray(nums, index + 1, sum1, sum2 + nums[index]);
-    }
-    return (sum1 == sum2);
-  }
-
-  /*
   Given an array of ints, is it possible to choose a group of some of the ints,
   beginning at the start index, such that the group sums to the given target?
   However, with the additional constraint that all 6's must be chosen. (No loops needed.)
@@ -77,6 +57,26 @@ public class RecursionClasswork{
     return (groupSum5(start + 1, nums, target - nums[start]) || groupSum5(start + 1, nums, target));
   }
 
+  /*
+    Given an array of ints, is it possible to divide the ints into two groups,
+    so that the sums of the two groups are the same.
+    Every int must be in one group or the other.
+    Write a recursive helper method that takes whatever arguments you like,
+    and make the initial call to your recursive helper from splitArray().
+    (No loops needed.)
+  */
+
+  public static boolean splitArray(int[] nums) {
+    return splitArray(nums, 0, 0, 0);
+  }
+
+  public static boolean splitArray(int[] nums, int index, int sum1, int sum2){
+    if (index < nums.length){
+      return splitArray(nums, index + 1, sum1 + nums[index], sum2) || splitArray(nums, index + 1, sum1, sum2 + nums[index]);
+    }
+    return (sum1 == sum2);
+  }
+
   public static boolean splitOdd10(int[] nums, int index, int sum1, int sum2) {
     if (index < nums.length){
       return splitOdd10(nums, index + 1, sum1 + nums[index], sum2) || splitOdd10(nums, index + 1, sum1, sum2 + nums[index]);
@@ -86,6 +86,22 @@ public class RecursionClasswork{
 
   public static boolean splitOdd10(int[] nums) {
     return splitOdd10(nums,0,0,0);
+  }
+
+  public static boolean split53(int[] nums, int index, int sum1, int sum2) {
+    if (index < nums.length){
+      if (nums[index] % 5 == 0){
+        return split53(nums, index + 1, sum1 + nums[index], sum2);
+      } else if (nums[index] % 3 == 0){
+        return split53(nums, index + 1, sum1, sum2 + nums[index]);
+      }else {
+      return split53(nums, index + 1, sum1 + nums[index], sum2) || split53(nums, index + 1, sum1, sum2 + nums[index]);
+      }
+    }
+    return (sum1 == sum2);
+  }
+  public static boolean split53(int[] nums) {
+    return split53(nums, 0, 0, 0);
   }
 
 
