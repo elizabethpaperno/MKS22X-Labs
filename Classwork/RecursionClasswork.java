@@ -80,8 +80,15 @@ public class RecursionClasswork{
   */
 
   public static boolean groupSumClump(int start, int[] nums, int target) {
-    return true; 
+    if (start==nums.length) return target==0;
+    int currentVal = nums[start];
+    for(int i=start;i<nums.length-2 && currentVal==nums[i+1];i++){
+      nums[start]+=nums[i+1];
+      nums[i+1]=0;
+    }
+    return (groupSumClump(start+1, nums, target-nums[start])) || (groupSumClump(start+1, nums, target));
   }
+
   public static boolean splitArray(int[] nums, int index, int sum1, int sum2){
     if (index < nums.length){
       return splitArray(nums, index + 1, sum1 + nums[index], sum2) || splitArray(nums, index + 1, sum1, sum2 + nums[index]);
