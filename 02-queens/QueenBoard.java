@@ -15,7 +15,9 @@ public class QueenBoard{
   *_ Q _ _
   *excludes the characters up to the comment(*)
   */
-  public String toString(){}
+  public String toString(){
+    return "";
+  }
 
   /**
   *@return true when the queen added correctly, false Otherwise
@@ -24,7 +26,25 @@ public class QueenBoard{
   * in which case the queen is added and all it's threatened positions are incremented
   */
   private boolean addQueen(int r, int c){
+    if (board[r][c] != 0){
+      //-1 indicates a queen is at that position
+      board[r][c] = -1;
 
+      //down direction
+      for (int i = c + 1; i < board[r].length; i++){
+        board[r][i] += 1;
+      }
+
+      for (int j = r; j < board.length + r; j++){
+        board[j][c] += 1;
+      }
+
+      for (int k = r; k < board.length + r; k--){
+        board[k][c] += 1;
+      }
+      return true;
+    }
+    return false;
   }
 
   /**Remove the queen that was added to r,c
@@ -45,11 +65,15 @@ public class QueenBoard{
   *        returns true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
-  public boolean solve(){}
+  public boolean solve(){
+    return true;
+  }
 
   /**Find all possible solutions to this size board.
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
-  public int countSolutions(){}
+  public int countSolutions(){
+    return 0;
+  }
 }
