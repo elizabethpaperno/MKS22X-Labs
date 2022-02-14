@@ -78,7 +78,20 @@ public class QueenBoard{
   *threatened positions are decremented
   */
   private void removeQueen(int r, int c){
+    board[r][c] += 1;
+      //down direction
+    for (int i = c + 1; i < board[r].length; i++){
+      board[i][c] -= 1;
+    }
 
+    for (int j = 1; j + 1< board.length - r && j + 1< board[r].length - c; j++){
+      board[r + j][c + j] -= 1;
+    }
+
+    for (int k = 1; r + k < board.length && c - k >= 0; k++){
+      board[r + k][c - k] -= 1;
+    }
+    }
   }
 
   /**Find the first solution configuration possible for this size board. Start by placing
