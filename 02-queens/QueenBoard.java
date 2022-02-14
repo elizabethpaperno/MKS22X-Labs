@@ -1,6 +1,9 @@
 public class QueenBoard{
   private int[][]board;
-  
+
+  public QueenBoard(int size){
+    board = new int[size][size];
+  }
   /**
   *@return The output string formatted as follows:
   *All numbers that represent queens are replaced with 'Q'
