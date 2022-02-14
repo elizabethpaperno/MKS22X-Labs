@@ -16,6 +16,7 @@ public class QueenBoard{
   *excludes the characters up to the comment(*)
   */
   public String toString(){
+    /*
     String str = "";
     for (int i = 0; i < board.length; i++){
       for (int j = 0; j < board.length; j++){
@@ -23,6 +24,19 @@ public class QueenBoard{
           str += "Q";
         }else {
           str += "_";
+        }
+      }
+      str += "\n";
+    }
+    return str;
+    */
+    String str = "";
+    for (int i = 0; i < board.length; i++){
+      for (int j = 0; j < board.length; j++){
+        if(board[i][j]== -1){
+          str += "Q";
+        }else {
+          str += board[i][j];
         }
       }
       str += "\n";
@@ -36,22 +50,22 @@ public class QueenBoard{
   *@postcondition the board is only changed when the function returns true
   * in which case the queen is added and all it's threatened positions are incremented
   */
-  private boolean addQueen(int r, int c){
-    if (board[r][c] != 0){
+  public boolean addQueen(int r, int c){
+    if (board[r][c] == 0){
       //-1 indicates a queen is at that position
       board[r][c] = -1;
 
       //down direction
       for (int i = c + 1; i < board[r].length; i++){
-        board[r][i] += 1;
+        board[i][c] += 1;
       }
 
-      for (int j = r; j < board.length + r; j++){
-        board[j][c] += 1;
+      for (int j = 1; j + 1< board.length - r && j + 1< board[r].length - c; j++){
+        board[r + j][c + j] += 1;
       }
 
-      for (int k = r; k < board.length + r; k--){
-        board[k][c] += 1;
+      for (int k = 1; r + k < board.length && c - k >= 0; k++){
+        board[r + k][c - k] += 1;
       }
       return true;
     }
