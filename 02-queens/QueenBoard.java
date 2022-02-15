@@ -16,7 +16,6 @@ public class QueenBoard{
   *excludes the characters up to the comment(*)
   */
   public String toString(){
-
     String str = "";
     for (int i = 0; i < board.length; i++){
       for (int j = 0; j < board[i].length; j++){
@@ -61,11 +60,11 @@ public class QueenBoard{
       for (int i = r + 1; i < board[r].length; i++){
         board[i][c] += 1;
       }
-
+      //diagonal right down
       for (int j = 1; j + 1< board.length - r && j < board[r].length - c; j++){
         board[r + j][c + j] += 1;
       }
-
+      //diagonal left down
       for (int k = 1; r + k < board.length && c - k >= 0; k++){
         board[r + k][c - k] += 1;
       }
@@ -122,10 +121,16 @@ public class QueenBoard{
     }else{
       for (int col = 0; col < board[row].length; col++){
         if(addQueen(row,col)){
+          System.out.println(Text.go(1,1));
+          System.out.println(this);//can change this to your debug print as well
+          Text.wait(1500);//change the delay 1000 = 1 second
           if(solve(row+1)){
             return true;
           }
           removeQueen(row,col);
+          System.out.println(Text.go(1,1));
+          System.out.println(this);//can change this to your debug print as well
+          Text.wait(1500);//change the delay 1000 = 1 second
         }
       }
       return false;
