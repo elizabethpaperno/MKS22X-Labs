@@ -61,7 +61,7 @@ public class QueenBoard{
         board[i][c] += 1;
       }
       //diagonal right down
-      for (int j = 1; j + 1< board.length - r && j < board[r].length - c; j++){
+      for (int j = 1; j < board.length - r && j < board[r].length - c; j++){
         board[r + j][c + j] += 1;
       }
       //diagonal left down
@@ -85,7 +85,7 @@ public class QueenBoard{
       board[i][c] -= 1;
     }
 
-    for (int j = 1; j + 1< board.length - r && j < board[r].length - c; j++){
+    for (int j = 1; j < board.length - r && j < board[r].length - c; j++){
       board[r + j][c + j] -= 1;
     }
 
