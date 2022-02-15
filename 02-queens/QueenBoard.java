@@ -105,7 +105,24 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
   public boolean solve(){
-    return true;
+    return solve(0);
+  }
+
+  //wrapper method
+  public boolean solve(int row){
+    if (row >= board.length){
+      return true;
+    }else{
+      for (int col = 0; col < board[row].length; col++){
+        if(addQueen(row,col)){
+          if(solve(row+1)){
+            return true;
+          }
+          removeQueen(row,col);
+        }
+      }
+      return false;
+    }
   }
 
   /**Find all possible solutions to this size board.
