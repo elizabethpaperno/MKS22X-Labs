@@ -20,9 +20,9 @@ public class QueenBoard{
     for (int i = 0; i < board.length; i++){
       for (int j = 0; j < board[i].length; j++){
         if(board[i][j]== -1){
-          str += "Q";
+          str += "Q ";
         }else {
-          str += "_";
+          str += "_ ";
         }
       }
       str += "\n";
@@ -123,14 +123,14 @@ public class QueenBoard{
         if(addQueen(row,col)){
           System.out.println(Text.go(1,1));
           System.out.println(this);//can change this to your debug print as well
-          Text.wait(1500);//change the delay 1000 = 1 second
+          //Text.wait(1500);//change the delay 1000 = 1 second
           if(solve(row+1)){
             return true;
           }
           removeQueen(row,col);
           System.out.println(Text.go(1,1));
           System.out.println(this);//can change this to your debug print as well
-          Text.wait(1500);//change the delay 1000 = 1 second
+          //Text.wait(10);//change the delay 1000 = 1 second
         }
       }
       return false;
