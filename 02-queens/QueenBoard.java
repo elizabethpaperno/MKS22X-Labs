@@ -19,7 +19,7 @@ public class QueenBoard{
 
     String str = "";
     for (int i = 0; i < board.length; i++){
-      for (int j = 0; j < board.length; j++){
+      for (int j = 0; j < board[i].length; j++){
         if(board[i][j]== -1){
           str += "Q";
         }else {
@@ -52,7 +52,7 @@ public class QueenBoard{
   *@postcondition the board is only changed when the function returns true
   * in which case the queen is added and all it's threatened positions are incremented
   */
-  public boolean addQueen(int r, int c){
+  private boolean addQueen(int r, int c){
     if (board[r][c] == 0){
       //-1 indicates a queen is at that position
       board[r][c] = -1;
@@ -79,7 +79,7 @@ public class QueenBoard{
   *@postcondition the board is modified to remove that queen and all it's
   *threatened positions are decremented
   */
-  public void removeQueen(int r, int c){
+  private void removeQueen(int r, int c){
     board[r][c] += 1;
       //down direction
     for (int i = r + 1; i < board[r].length; i++){
@@ -105,6 +105,13 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
   public boolean solve(){
+    for (int i = 0; i < board.length; i++){
+      for (int j = 0; j < board[i].length; j++){
+        if (board[i][j] != 0){
+           throw new IllegalStateException ("IllegalStateException: board must be empty to solve.");
+        }
+      }
+    }
     return solve(0);
   }
 
