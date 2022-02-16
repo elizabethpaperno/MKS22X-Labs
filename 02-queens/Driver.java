@@ -1,15 +1,25 @@
 public class Driver {
   public static void main(String[] args){
-    QueenBoard board1 = new QueenBoard(8);
-    //board1.addQueen(0,1) ;
-    //board1.addQueen(2,5) ;
-    //System.out.println(board1);
-    //board1.removeQueen(0,1) ;
-    //System.out.print(board1);
+    int SIZE = 8;
+    if(args.length > 0){
+      SIZE = Integer.parseInt(args[0]);
+    }
+    QueenBoard b = new QueenBoard(SIZE);
+    if(args.length > 1){
+      b.setAnimate(true);
+      b.setDelay(Integer.parseInt(args[1]));
+    }
+    /*
     System.out.println(Text.CLEAR_SCREEN);
     System.out.println(Text.HIDE_CURSOR);
     System.out.println(Text.go(1,1));
-    board1.solve();
+    */
+    //b.solve();
+    System.out.println(b.countSolutions());
+    /*
     System.out.println(Text.RESET);
+    System.out.println(Text.go(1,1));
+    System.out.println(b);
+    */
   }
 }
