@@ -148,7 +148,29 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
   public int countSolutions(){
-    return 0;
+    for (int i = 0; i < board.length; i++){
+      for (int j = 0; j < board[i].length; j++){
+        if (board[i][j] != 0){
+           throw new IllegalStateException ("IllegalStateException: board must be empty to count solutions.");
+        }
+      }
+    }
+    return countSolutions(0);
+  }
+
+  public int countSolutions(int row){
+    int sol = 0;
+    if (row >= board.length){
+      return 1;
+    }else{
+      for (int col = 0; col < board[row].length; col++){
+        if(addQueen(row,col)){
+          sol += countSolutions(row + 1);
+          removeQueen(row,col);
+        }  
+      }
+      return sol;
+    }
   }
 
   public void setAnimate(boolean newValue){
