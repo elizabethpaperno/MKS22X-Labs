@@ -22,6 +22,20 @@ public class Maze{
   */
   public Maze(String filename) throws FileNotFoundException{
     //COMPLETE CONSTRUCTOR
+    File text = new File(filename);
+    Scanner s = new Scanner(text);
+    ArrayList<String> lines = new ArrayList<String>();
+    while (s.hasNextLine() && s.nextLine() != ""){
+      String line = s.nextLine();
+      lines.add(line);
+    }
+    int height = lines.size();
+    //int width = lines.get(0).length();
+    maze = new char[height][];
+    for (int i = 0; i < lines.size(); i++){
+      char[] row = lines.get(i).toCharArray();
+      maze[i] = row;
+    }
   }
 
   private void wait(int millis){
@@ -49,7 +63,13 @@ public class Maze{
   It should look like the text file with some characters replaced.
   */
   public String toString(){
-    return "WRITE THIS METHOD";
+    String str = "";
+    for (int i = 0; i < maze.length; i++){
+      for (int j = 0; j < maze[i].length; j++){
+        str += maze[i][j];
+      }
+    }
+    return str;
   }
 
   /*Wrapper Solve Function returns the helper function
