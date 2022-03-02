@@ -25,17 +25,22 @@ public class Maze{
     File mz = new File(filename);
     Scanner s = new Scanner(mz);
     ArrayList<String> lines = new ArrayList<String>();
-    while (s.hasNextLine() && s.nextLine() != ""){
+    while (s.hasNextLine()){
       String line = s.nextLine();
-      lines.add(line);
+      if (line != ""){
+        lines.add(line);
+      }
     }
+    System.out.println(lines);
     int height = lines.size();
-    //int width = lines.get(0).length();
-    maze = new char[height][];
+    int width = lines.get(0).length();
+    maze = new char[height][width];
     for (int i = 0; i < lines.size(); i++){
       char[] row = lines.get(i).toCharArray();
+      System.out.println(Arrays.toString(row));
       maze[i] = row;
     }
+    System.out.println(Arrays.deepToString(maze));
   }
 
   private void wait(int millis){
@@ -102,7 +107,6 @@ public class Maze{
   */
   private int solve(int row, int col){ //you can add more parameters since this is private
     //automatic animation! You are welcome.
-
     if (maze[row][col] == 'E'){
       return 0;
     }
