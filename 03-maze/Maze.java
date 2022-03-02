@@ -37,10 +37,9 @@ public class Maze{
     maze = new char[height][width];
     for (int i = 0; i < lines.size(); i++){
       char[] row = lines.get(i).toCharArray();
-      System.out.println(Arrays.toString(row));
+      //System.out.println(Arrays.toString(row));
       maze[i] = row;
     }
-    System.out.println(Arrays.deepToString(maze));
   }
 
   private void wait(int millis){
