@@ -22,8 +22,8 @@ public class Maze{
   */
   public Maze(String filename) throws FileNotFoundException{
     //COMPLETE CONSTRUCTOR
-    File text = new File(filename);
-    Scanner s = new Scanner(text);
+    File mz = new File(filename);
+    Scanner s = new Scanner(mz);
     ArrayList<String> lines = new ArrayList<String>();
     while (s.hasNextLine() && s.nextLine() != ""){
       String line = s.nextLine();
@@ -102,12 +102,43 @@ public class Maze{
   */
   private int solve(int row, int col){ //you can add more parameters since this is private
     //automatic animation! You are welcome.
+
+    if (maze[row][col] == 'E'){
+      return 0;
+    }
+    if(maze[row][col] == '@' || maze[row][col] == '#'){
+      return -1;
+    }
+    //when solved return 1 + solve()
+    maze[row][col] = '@';
+
     if(animate){
       gotoTop();
       System.out.println(this);
       wait(50);
     }
-
+    int dir = solve(row + 1, col);
+    if(dir > -1){
+      return dir + 1;
+    }
+    dir = solve(row - 1, col);
+    if(dir > -1){
+      return dir + 1;
+    }
+    dir = solve(row, col + 1);
+    if(dir > -1){
+      return dir + 1;
+    }
+    dir = solve(row, col - 1);
+    if(dir > -1){
+      return dir + 1;
+    }
+    maze[row][col] = '.';
+    if(animate){
+      gotoTop();
+      System.out.println(this);
+      wait(50);
+    }
     //COMPLETE SOLVE
     return -1; //so it compiles
   }
