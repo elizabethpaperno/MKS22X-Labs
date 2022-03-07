@@ -12,8 +12,9 @@ public class MazeGenerator{
 
   public static void generate(char[][]maze, int startrow, int startcol){
     generateMaze(maze, startrow,startcol);
-    setStart(maze);
-    setEnd(maze);
+    maze[startrow][startcol] = 'S';
+    //System.out.println(toString(maze));
+    setEnd(maze, startcol, startrow);
   }
 
   public static void generateMaze(char[][]maze, int startrow, int startcol) {
@@ -60,27 +61,24 @@ public class MazeGenerator{
     return;
   }
 
-  public static void setStart(char[][]maze){
+  public static void setEnd(char[][]maze,int startrow, int startcol){
     boolean cont = true;
-    for (int i = 0; i < maze.length && cont; i++){
-      for (int j = 0; j < maze[i].length && cont; j++){
-        if (maze[i][j] == ' '){
-          maze[i][j] = 'S';
-          cont = false;
-        }
-      }
-    }
-  }
-  public static void setEnd(char[][]maze){
-    boolean cont = true;
+    double maxDistance = 0;
+    int rowMax = 0;
+    int colMax = 0;
     for (int i = maze.length - 1; i >= 0 && cont; i--){
       for (int j = maze[i].length - 1; j >= 0 && cont; j--){
         if (maze[i][j] == ' '){
-          maze[i][j] = 'E';
-          cont = false;
+          double distance = Math.sqrt((startrow-i)*(startrow-i) + (startcol-j)*(startcol-j));
+          if (distance > maxDistance){
+            maxDistance = distance;
+            rowMax = i;
+            colMax = j;
+          }
         }
       }
     }
+    maze[rowMax][colMax] = 'E';
   }
   public static String toString(char[][] maze){
     String str = "";
@@ -95,7 +93,7 @@ public class MazeGenerator{
 
   public static void main(String[] args){
     char[][]maze = createWallMaze(30,30);
-    generate(maze, 1, 1);
+    generate(maze, 15, 15);
     System.out.println(toString(maze));
   }
 }
