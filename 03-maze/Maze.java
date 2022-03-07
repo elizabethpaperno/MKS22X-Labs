@@ -40,6 +40,17 @@ public class Maze{
       //System.out.println(Arrays.toString(row));
       maze[i] = row;
     }
+    boolean cont = true;
+    for (int i = maze.length - 1; i >= 0 && cont; i--){
+      for (int j = maze[i].length - 1; j >= 0 && cont; j--){
+        if (maze[i][j] == 'S'){
+          startRow = i;
+          startCol = j;
+          cont = false;
+        }
+      }
+    }
+
   }
 
   private void wait(int millis){
@@ -86,6 +97,8 @@ public class Maze{
     if(animate){
       clearTerminal();
     }
+    //System.out.println(startRow);
+    //System.out.println(startCol);
     //start solving at the location of the s.
     return solve(startRow,startCol);
 
@@ -110,7 +123,7 @@ public class Maze{
     if (maze[row][col] == 'E'){
       return 0;
     }
-    if(maze[row][col] == '@' || maze[row][col] == '#'){
+    else if(maze[row][col] == '@' || maze[row][col] == '#' || maze[row][col] == '.'){
       return -1;
     }
     //when solved return 1 + solve()
@@ -121,21 +134,21 @@ public class Maze{
       System.out.println(this);
       wait(50);
     }
-    int dir = solve(row + 1, col);
-    if(dir > -1){
-      return dir + 1;
+    int dir1 = solve(row + 1, col);
+    if(dir1 > -1){
+      return dir1 + 1;
     }
-    dir = solve(row - 1, col);
-    if(dir > -1){
-      return dir + 1;
+    int dir2 = solve(row - 1, col);
+    if(dir2 > -1){
+      return dir2 + 1;
     }
-    dir = solve(row, col + 1);
-    if(dir > -1){
-      return dir + 1;
+    int dir3 = solve(row, col + 1);
+    if(dir3 > -1){
+      return dir3 + 1;
     }
-    dir = solve(row, col - 1);
-    if(dir > -1){
-      return dir + 1;
+    int dir4 = solve(row, col - 1);
+    if(dir4 > -1){
+      return dir4 + 1;
     }
     maze[row][col] = '.';
     if(animate){
@@ -143,7 +156,7 @@ public class Maze{
       System.out.println(this);
       wait(50);
     }
-    //COMPLETE SOLVE
-    return -1; //so it compiles
+    return -1;
   }
+
 }

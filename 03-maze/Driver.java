@@ -1,12 +1,19 @@
 import java.util.*;
 import java.io.*;
 public class Driver{
-  public static void main(String[] args){
-    try {
-      Maze Maze1 = new Maze("maze1");
-      System.out.println(Maze1);
+  public static void main(String[]args){
+
+    //files do not require an extension like .txt or .dat
+    String filename = "maze5";
+
+    try{
+      Maze f;
+      f = new Maze(filename);
+      f.setAnimate(true);
+      System.out.println(f.solve()+" steps");
+      System.out.println(f);
     }catch(FileNotFoundException e){
-      System.out.println("bad file name");
+      System.out.println("Invalid filename: "+filename);
     }
   }
 }
