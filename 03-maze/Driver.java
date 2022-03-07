@@ -4,7 +4,7 @@ public class Driver{
   public static void main(String[]args){
 
     //files do not require an extension like .txt or .dat
-    String filename = "maze5";
+    String filename = "Maze1.txt";
 
     try{
       Maze f;

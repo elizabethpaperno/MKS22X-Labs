@@ -36,7 +36,7 @@ public class MazeGenerator{
 
     if (numSafeCarve < 2){
       maze[startrow][startcol]= ' ';
-      System.out.println(startrow + " " + startcol);
+      //System.out.println(startrow + " " + startcol);
       ArrayList<Integer> randDirection = new ArrayList<Integer>(4);
       randDirection.add(0);
       randDirection.add(1);
@@ -44,7 +44,6 @@ public class MazeGenerator{
       randDirection.add(3);
       while(randDirection.size() != 0){
         int direction = (int)(Math.random() * randDirection.size());
-
         if (randDirection.get(direction) == 0 ){
           generateMaze(maze, startrow + 1, startcol);
         }else if(randDirection.get(direction) == 1 ){
@@ -95,7 +94,7 @@ public class MazeGenerator{
   }
 
   public static void main(String[] args){
-    char[][]maze = createWallMaze(10,10);
+    char[][]maze = createWallMaze(30,30);
     generate(maze, 1, 1);
     System.out.println(toString(maze));
   }
