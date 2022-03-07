@@ -11,41 +11,47 @@ public class MazeGenerator{
   }
   public static void generate(char[][]maze, int startrow, int startcol) {
     int numSafeCarve = 0;
-    if (maze[startrow + 1][startcol] == ' ' && startrow + 1!= 0 && startrow + 1 != maze.length - 1 && startcol != 0 && startcol == maze[startrow].length - 1) {
-      numSafeCarve++;
-    }
-    if (maze[startrow - 1][startcol] == ' ' && startrow - 1!= 0 && startrow - 1 != maze.length - 1 && startcol != 0 && startcol == maze[startrow].length - 1) {
-      numSafeCarve++;
-    }
-    if (maze[startrow][startcol + 1] == ' ' && startrow != 0 && startrow != maze.length - 1 && startcol + 1!= 0 && startcol + 1 == maze[startrow].length - 1) {
-      numSafeCarve++;
-    }
-    if (maze[startrow][startcol - 1] == ' ' && startrow != 0 && startrow != maze.length - 1 && startcol - 1!= 0 && startcol - 1 == maze[startrow].length - 1) {
-      numSafeCarve++;
-    }
+    maze[startrow][startcol] = 'S';
+    if (maze[startrow][startcol] != ' ' && startrow < maze.length - 1 && startrow > 0 && startcol < maze[0].length - 1 && startcol > 0){
+      if (maze[startrow + 1][startcol] == ' ') {
+        numSafeCarve++;
+      }
+      if (maze[startrow - 1][startcol] == ' ') {
+        numSafeCarve++;
+      }
+      if (maze[startrow][startcol + 1] == ' ') {
+        numSafeCarve++;
+      }
+      if (maze[startrow][startcol - 1] == ' ') {
+        numSafeCarve++;
+      }
 
-    ArrayList<Integer> randDirection = new ArrayList<Integer>(4);
-    randDirection.add(0);
-    randDirection.add(1);
-    randDirection.add(2);
-    randDirection.add(3);
 
     if (numSafeCarve < 2){
-      if (startrow != 0 && startrow != maze.length - 1 && startcol != 0 && startcol == maze[startrow].length - 1){
-        maze[startrow][startcol]= ' ';
-      }
-      int direction = (int)Math.random() * 4;
-      randDirection.remove(direction);
-      if (direction == 0){
-        generate(maze, startrow + 1, startcol);
-      }else if(direction == 1){
-        generate(maze, startrow - 1, startcol);
-      }else if(direction == 2){
-        generate(maze, startrow, startcol-1);
-      }else if(direction == 3){
-        generate(maze, startrow + 1, startcol);
+      maze[startrow][startcol]= ' ';
+      System.out.println(startrow + " " + startcol);
+      ArrayList<Integer> randDirection = new ArrayList<Integer>(4);
+      randDirection.add(0);
+      randDirection.add(1);
+      randDirection.add(2);
+      randDirection.add(3);
+      while(randDirection.size() != 0){
+        int direction = (int)(Math.random() * randDirection.size());
+
+        if (randDirection.get(direction) == 0 ){
+          generate(maze, startrow + 1, startcol);
+        }else if(randDirection.get(direction) == 1 ){
+          generate(maze, startrow - 1, startcol);
+        }else if(randDirection.get(direction) == 2 ){
+          generate(maze, startrow, startcol-1);
+        }else if(randDirection.get(direction) == 3 ){
+          generate(maze, startrow, startcol + 1);
+        }
+        randDirection.remove(direction);
       }
     }
+  }
+    return;
   }
 
   public static String toString(char[][] maze){
@@ -60,7 +66,7 @@ public class MazeGenerator{
   }
 
   public static void main(String[] args){
-    char[][]maze = createWallMaze(10,10);
+    char[][]maze = createWallMaze(5,5);
     generate(maze, 1, 1);
     System.out.println(toString(maze));
   }
