@@ -9,9 +9,16 @@ public class MazeGenerator{
     }
     return maze;
   }
-  public static void generate(char[][]maze, int startrow, int startcol) {
+
+  public static void generate(char[][]maze, int startrow, int startcol){
+    generateMaze(maze, startrow,startcol);
+    setStart(maze);
+    setEnd(maze);
+  }
+
+  public static void generateMaze(char[][]maze, int startrow, int startcol) {
     int numSafeCarve = 0;
-    maze[startrow][startcol] = 'S';
+    //maze[startrow][startcol] = 'S';
     if (maze[startrow][startcol] != ' ' && startrow < maze.length - 1 && startrow > 0 && startcol < maze[0].length - 1 && startcol > 0){
       if (maze[startrow + 1][startcol] == ' ') {
         numSafeCarve++;
@@ -39,13 +46,13 @@ public class MazeGenerator{
         int direction = (int)(Math.random() * randDirection.size());
 
         if (randDirection.get(direction) == 0 ){
-          generate(maze, startrow + 1, startcol);
+          generateMaze(maze, startrow + 1, startcol);
         }else if(randDirection.get(direction) == 1 ){
-          generate(maze, startrow - 1, startcol);
+          generateMaze(maze, startrow - 1, startcol);
         }else if(randDirection.get(direction) == 2 ){
-          generate(maze, startrow, startcol-1);
+          generateMaze(maze, startrow, startcol-1);
         }else if(randDirection.get(direction) == 3 ){
-          generate(maze, startrow, startcol + 1);
+          generateMaze(maze, startrow, startcol + 1);
         }
         randDirection.remove(direction);
       }
@@ -54,6 +61,28 @@ public class MazeGenerator{
     return;
   }
 
+  public static void setStart(char[][]maze){
+    boolean cont = true;
+    for (int i = 0; i < maze.length && cont; i++){
+      for (int j = 0; j < maze[i].length && cont; j++){
+        if (maze[i][j] == ' '){
+          maze[i][j] = 'S';
+          cont = false;
+        }
+      }
+    }
+  }
+  public static void setEnd(char[][]maze){
+    boolean cont = true;
+    for (int i = maze.length - 1; i >= 0 && cont; i--){
+      for (int j = maze[i].length - 1; j >= 0 && cont; j--){
+        if (maze[i][j] == ' '){
+          maze[i][j] = 'E';
+          cont = false;
+        }
+      }
+    }
+  }
   public static String toString(char[][] maze){
     String str = "";
     for (int i = 0; i < maze.length; i++){
@@ -66,7 +95,7 @@ public class MazeGenerator{
   }
 
   public static void main(String[] args){
-    char[][]maze = createWallMaze(5,5);
+    char[][]maze = createWallMaze(10,10);
     generate(maze, 1, 1);
     System.out.println(toString(maze));
   }
