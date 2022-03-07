@@ -9,6 +9,28 @@ public class MazeGenerator{
     return maze;
   }
   public static void generate(char[][]maze, int startrow, int startcol) {
+    int numSafeCarve = 0;
+    if (maze[startrow + 1][startcol] == ' ' && startrow + 1!= 0 && startrow + 1 != maze.length - 1 && startcol != 0 && startcol == maze[startrow].length - 1) {
+      numSafeCarve++;
+    }
+    if (maze[startrow - 1][startcol] == ' ' && startrow - 1!= 0 && startrow - 1 != maze.length - 1 && startcol != 0 && startcol == maze[startrow].length - 1) {
+      numSafeCarve++;
+    }
+    if (maze[startrow][startcol + 1] == ' ' && startrow != 0 && startrow != maze.length - 1 && startcol + 1!= 0 && startcol + 1 == maze[startrow].length - 1) {
+      numSafeCarve++;
+    }
+    if (maze[startrow][startcol - 1] == ' ' && startrow != 0 && startrow != maze.length - 1 && startcol - 1!= 0 && startcol - 1 == maze[startrow].length - 1) {
+      numSafeCarve++;
+    }
 
+    ArrayList<Integer> randDirection = new ArrayList<Integer>(4);
+    randDirection.add(0);
+    randDirection.add(1);
+    randDirection.add(2);
+    randDirection.add(3);
+
+    if (numSafeCarve < 2){
+
+    }
   }
 }
