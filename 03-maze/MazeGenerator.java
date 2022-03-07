@@ -1,3 +1,4 @@
+import java.util.*;
 public class MazeGenerator{
   public char[][] createWallMaze(int numRows, int numCols){
     char[][] maze = new char[numRows][numCols];
@@ -30,7 +31,20 @@ public class MazeGenerator{
     randDirection.add(3);
 
     if (numSafeCarve < 2){
-
+      if (startrow != 0 && startrow != maze.length - 1 && startcol != 0 && startcol == maze[startrow].length - 1){
+        maze[startrow][startcol]= ' ';
+      }
+      int direction = (int)Math.random() * 4;
+      randDirection.remove(direction);
+      if (direction == 0){
+        generate(maze, startrow + 1, startcol);
+      }else if(direction == 1){
+        generate(maze, startrow - 1, startcol);
+      }else if(direction == 2){
+        generate(maze, startrow, startcol-1);
+      }else if(direction == 3){
+        generate(maze, startrow + 1, startcol);
+      }
     }
   }
 }
