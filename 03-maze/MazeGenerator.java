@@ -1,6 +1,6 @@
 import java.util.*;
 public class MazeGenerator{
-  public char[][] createWallMaze(int numRows, int numCols){
+  public static char[][] createWallMaze(int numRows, int numCols){
     char[][] maze = new char[numRows][numCols];
     for (int i = 0; i < maze.length; i++){
       for (int j = 0; j < maze[i].length; j++){
@@ -46,5 +46,22 @@ public class MazeGenerator{
         generate(maze, startrow + 1, startcol);
       }
     }
+  }
+
+  public static String toString(char[][] maze){
+    String str = "";
+    for (int i = 0; i < maze.length; i++){
+      for (int j = 0; j < maze[i].length; j++){
+        str += maze[i][j];
+      }
+      str += "\n";
+    }
+    return str;
+  }
+
+  public static void main(String[] args){
+    char[][]maze = createWallMaze(10,10);
+    generate(maze, 1, 1);
+    System.out.println(toString(maze));
   }
 }
