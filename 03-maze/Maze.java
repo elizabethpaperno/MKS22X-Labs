@@ -31,7 +31,7 @@ public class Maze{
         lines.add(line);
       }
     }
-    System.out.println(lines);
+    //System.out.println(lines);
     int height = lines.size();
     int width = lines.get(0).length();
     maze = new char[height][width];
@@ -72,6 +72,7 @@ public class Maze{
       for (int j = 0; j < maze[i].length; j++){
         str += maze[i][j];
       }
+      str += "\n";
     }
     return str;
   }
