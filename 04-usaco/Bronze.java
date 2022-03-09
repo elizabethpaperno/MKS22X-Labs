@@ -17,9 +17,19 @@ public class Bronze {
         grid[row][col] = s.nextInt();
       }
     }
-    System.out.println(grid);
+  }
+  public static long solve(String filename){
+    parseFile(filename);
+    long total = 0;
+    for(int i = 0; i < N; i++){
+      //call stomp for input
+    }
+    return total;
   }
 
+  public static void stomp(int Rs, int Cs, int Ds){
+    
+  }
   public String toString(){
     String str = "";
     for (int i = 0; i < grid.length; i++){
