@@ -3,7 +3,7 @@ import java.io.*;
 public class Bronze {
   private static int R,C,E,N;
   private static int[][] grid;
-  public static void parseFile(String filename) throws FileNotFoundException{
+  public static void parseFileStomp(String filename) throws FileNotFoundException{
     File input = new File(filename);
     Scanner s = new Scanner(input);
 
@@ -23,7 +23,7 @@ public class Bronze {
   }
   public static long solve(String filename){
     try {
-      parseFile(filename);
+      parseFileStomp(filename);
     }catch(FileNotFoundException e){
       System.out.println("Invalid filename");
     }
@@ -34,18 +34,17 @@ public class Bronze {
 
   public static void stomp(int Rs, int Cs, int Ds){
     int maxVal = 0;
-    for (int r  = Rs - 1; r < Rs + 4; r++){
-      for (int c = Ds - 1; c<  Rs + 4; c++ ){
+    for (int r  = Rs - 1; r < Rs + 4 && r < grid.length; r++){
+      for (int c = Ds - 1; c<  Rs + 4 && c < grid[r].length; c++ ){
         if (grid[r][c] > maxVal){
           maxVal = grid[r][c];
         }
       }
     }
     int finalVal = maxVal - Ds;
-    for (int r = Rs; r < Rs + 4; r++){
-      for (int c = Ds; c<  Rs + 4; c++ ){
+    for (int r = Rs; r < Rs + 4 && r < grid.length; r++){
+      for (int c = Ds;c<  Rs + 4 && c < grid[r].length; c++ ){
         if (grid[r][c] > finalVal){
-          System.out.println(grid[r][c]);
           grid[r][c] = finalVal;
         }
       }
