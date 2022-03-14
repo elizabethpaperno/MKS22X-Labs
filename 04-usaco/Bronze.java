@@ -24,32 +24,53 @@ public class Bronze {
   public static long solve(String filename){
     try {
       parseFileStomp(filename);
+      return getVol();
     }catch(FileNotFoundException e){
       System.out.println("Invalid filename");
+      return -1;
     }
-    long total = 0;
-
-    return total;
   }
 
   public static void stomp(int Rs, int Cs, int Ds){
     int maxVal = 0;
-    for (int r  = Rs - 1; r < Rs + 4 && r < grid.length; r++){
-      for (int c = Ds - 1; c<  Rs + 4 && c < grid[r].length; c++ ){
+    for (int r  = Rs - 1; r < Rs + 3 && r < grid.length; r++){
+      for (int c = Cs - 1; c<  Cs + 3 && c < grid[r].length; c++ ){
         if (grid[r][c] > maxVal){
           maxVal = grid[r][c];
         }
       }
     }
     int finalVal = maxVal - Ds;
-    for (int r = Rs; r < Rs + 4 && r < grid.length; r++){
-      for (int c = Ds;c<  Rs + 4 && c < grid[r].length; c++ ){
+    for (int r = Rs - 1; r < Rs + 3 && r < grid.length; r++){
+      for (int c = Cs - 1; c <  Cs + 3 && c < grid[r].length; c++){
         if (grid[r][c] > finalVal){
           grid[r][c] = finalVal;
         }
       }
     }
   }
+
+  public static int getVol() {
+    for (int i = 0; i < grid.length; i++) {
+      for (int j = 0; j < grid[i].length; j++) {
+        if (grid[i][j] > E) {
+          grid[i][j] = 0;
+        } else {
+          grid[i][j] = E - grid[i][j];
+        }
+      }
+    }
+
+    int depth= 0;
+    for (int i = 0; i < grid.length; i++) {
+      for (int j = 0; j < grid[i].length; j++) {
+        depth += grid[i][j];
+      }
+    }
+    return (depth * 72 * 72);
+  }
+
+
   public String toString(){
     String str = "";
     for (int i = 0; i < grid.length; i++){
@@ -62,12 +83,8 @@ public class Bronze {
   }
 
   public static void main(String[] args){
-    try {
-      Bronze b = new Bronze();
-      Bronze.parseFile("makelake");
-      System.out.println(b);
-    } catch (FileNotFoundException e){
-      System.out.println("Invalid filename");
-    }
+    Bronze b = new Bronze();
+    System.out.println(Bronze.solve("makelake"));
+    System.out.println(b);
   }
 }
