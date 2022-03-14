@@ -33,16 +33,16 @@ public class Bronze {
 
   public static void stomp(int Rs, int Cs, int Ds){
     int maxVal = 0;
-    for (int r  = Rs - 1; r < Rs + 3 && r < grid.length; r++){
-      for (int c = Cs - 1; c<  Cs + 3 && c < grid[r].length; c++ ){
+    for (int r  = Rs - 1; r < Rs + 2 && r < grid.length; r++){
+      for (int c = Cs - 1; c<  Cs + 2 && c < grid[r].length; c++ ){
         if (grid[r][c] > maxVal){
           maxVal = grid[r][c];
         }
       }
     }
     int finalVal = maxVal - Ds;
-    for (int r = Rs - 1; r < Rs + 3 && r < grid.length; r++){
-      for (int c = Cs - 1; c <  Cs + 3 && c < grid[r].length; c++){
+    for (int r = Rs - 1; r < Rs + 2 && r < grid.length; r++){
+      for (int c = Cs - 1; c <  Cs + 2  && c < grid[r].length; c++){
         if (grid[r][c] > finalVal){
           grid[r][c] = finalVal;
         }
@@ -51,22 +51,15 @@ public class Bronze {
   }
 
   public static int getVol() {
-    for (int i = 0; i < grid.length; i++) {
-      for (int j = 0; j < grid[i].length; j++) {
-        if (grid[i][j] > E) {
-          grid[i][j] = 0;
-        } else {
-          grid[i][j] = E - grid[i][j];
-        }
-      }
-    }
-
     int depth= 0;
     for (int i = 0; i < grid.length; i++) {
       for (int j = 0; j < grid[i].length; j++) {
-        depth += grid[i][j];
+        if (grid[i][j] < E) {
+          depth += E - grid[i][j];
+        }
       }
     }
+    //System.out.println(depth);
     return (depth * 72 * 72);
   }
 
