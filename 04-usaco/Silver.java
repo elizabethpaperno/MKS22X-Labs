@@ -32,6 +32,17 @@ public class Silver{
     solve(T, R1, C1, R2, C2);
   }
 
+  public String toString(){
+    String str = "";
+    for (int i = 0; i < grid.length; i++){
+      for (int j = 0; j < grid[i].length; j++){
+        str += grid[i][j] + " ";
+      }
+      str += "\n";
+    }
+    return str;
+  }
+
   public static long solve(int T, int R1, int C1, int R2, int C2){
     grid[R1][C1] = 1;
     return 1;
