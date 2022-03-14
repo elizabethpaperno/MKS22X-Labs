@@ -30,10 +30,10 @@ public class Silver{
       grid[i]=rowNum;
     }
 
-    R1 =s.nextInt();
-    C1 = s.nextInt();
-    R2 = s.nextInt();
-    C2 = s.nextInt();
+    R1 =s.nextInt() - 1;
+    C1 = s.nextInt()- 1;
+    R2 = s.nextInt()- 1;
+    C2 = s.nextInt()- 1;
 
   }
 
@@ -62,22 +62,22 @@ public class Silver{
           if (grid[i][j] == -1){
             array2[i][j] = -1;
           }else{
-            if(j != 0){
+            if(i != 0){
               if (grid[i-1][j] != -1){
                 left = grid[i-1][j];
               }
             }
-            if (j != M - 1){
+            if (i != N - 1){
               if (grid[i+1][j] != -1){
                 right = grid[i+1][j];
               }
             }
-            if(i != 0){
+            if(j != M - 1){
               if (grid[i][j+1] != -1){
                 up = grid[i][j+1];
               }
             }
-            if (i != N - 1){
+            if (j != 0){
               if (grid[i][j-1] != -1){
                 down = grid[i][j-1];
               }
