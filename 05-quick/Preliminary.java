@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 public class Preliminary {
     /*Modify the array such that:
   *1. A random index from start to end inclusive is chosen, the
@@ -13,7 +13,7 @@ public class Preliminary {
   static void swap(int[] arr, int i1, int i2){
     int ogVal = arr[i1];
     arr[i1] = arr[i2];
-    arr[i2] = tmp;
+    arr[i2] = ogVal;
   }
 
   public static int partition ( int [] data, int start, int end){
@@ -22,24 +22,22 @@ public class Preliminary {
     int pivot = data[pivotIn];
     System.out.println(pivot);
     swap(data, start, pivot);
-    int first = start + 1;
-    int last = end;
-    while(first <= last){
-        if(data[first] < pivot){
-          ogVal = data[first];
-          data[first] = data[pivotIn];
-          data[pivotIn] = ogVal;
-          first++;
+    pivotIn = 0;
+    for(int first = start + 1; first < end; first++){
+        if(data[first] < data[end]){
+          pivotIn += 1;
+          swap(data, pivotIn, first);
         }else{
-          ogVal = data[first];
-          data[first] = data[last];
-          data[last] = ogVal;
-          last--;
+          swap(data, start, pivotIn);
         }
       }
-      return first;
+      return pivotIn;
     }
 
-    
+    public static void main(String[] args){
+      int[] t1 = {999,999,999,4,3,2,1,0,999,999,999};
+      partition(t1, 0, 10);
+      System.out.println(Arrays.toString(t1));
+    }
 
 }
