@@ -10,14 +10,18 @@ public class Preliminary {
   *4. Only the indices from start to end inclusive are considered in range
   *@return the index of the final position of the pivot element.
   */
+  static void swap(int[] arr, int i1, int i2){
+    int ogVal = arr[i1];
+    arr[i1] = arr[i2];
+    arr[i2] = tmp;
+  }
+
   public static int partition ( int [] data, int start, int end){
     Random rng = new Random();
     int pivotIn = rng.nextInt(end-start+1)+start;
     int pivot = data[pivotIn];
     System.out.println(pivot);
-    int ogVal = data[start];
-    data[start] = pivot;
-    data[pivotIn] = ogVal;
+    swap(data, start, pivot);
     int first = start + 1;
     int last = end;
     while(first <= last){
@@ -35,4 +39,7 @@ public class Preliminary {
       }
       return first;
     }
+
+    
+
 }
