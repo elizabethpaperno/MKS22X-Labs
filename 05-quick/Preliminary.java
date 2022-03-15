@@ -20,23 +20,36 @@ public class Preliminary {
     Random rng = new Random();
     int pivotIn = rng.nextInt(end-start+1)+start;
     int pivot = data[pivotIn];
-    System.out.println(pivot);
-    swap(data, start, pivot);
-    pivotIn = 0;
-    for(int first = start + 1; first < end; first++){
-        if(data[first] < data[end]){
+    //System.out.println(pivot);
+    swap(data, start, pivotIn);
+    pivotIn = start;
+    int low = pivotIn + 1;
+    int high = end;
+
+    for(int i = start; i <= end; i++){
+        if(data[low] < pivot){
+          swap(data, pivotIn, low);
           pivotIn += 1;
-          swap(data, pivotIn, first);
+          low += 1;
+          //System.out.println(Arrays.toString(data));
         }else{
-          swap(data, start, pivotIn);
+          swap(data, low, high);
+          high--;
+          //System.out.println(Arrays.toString(data));
         }
       }
-      return pivotIn;
+      return low - 1;
     }
 
     public static void main(String[] args){
+      int [] data = new int[] {4,3,2,1,0};
+      System.out.println("Original: "+Arrays.toString(data));
+      int pivot = partition( data , 0, 4);
+      System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
+      System.out.println("Modified: "+Arrays.toString(data));
+      System.out.println();
       int[] t1 = {999,999,999,4,3,2,1,0,999,999,999};
-      partition(t1, 0, 10);
+      System.out.println(partition(t1, 0, t1.length - 1));
       System.out.println(Arrays.toString(t1));
     }
 
