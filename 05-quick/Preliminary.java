@@ -1,3 +1,4 @@
+import java.util.Random;
 public class Preliminary {
     /*Modify the array such that:
   *1. A random index from start to end inclusive is chosen, the
@@ -10,5 +11,28 @@ public class Preliminary {
   *@return the index of the final position of the pivot element.
   */
   public static int partition ( int [] data, int start, int end){
-  }
+    Random rng = new Random();
+    int pivotIn = rng.nextInt(end-start+1)+start;
+    int pivot = data[pivotIn];
+    System.out.println(pivot);
+    int ogVal = data[start];
+    data[start] = pivot;
+    data[pivotIn] = ogVal;
+    int first = start + 1;
+    int last = end;
+    while(first <= last){
+        if(data[first] < pivot){
+          ogVal = data[first];
+          data[first] = data[pivotIn];
+          data[pivotIn] = ogVal;
+          first++;
+        }else{
+          ogVal = data[first];
+          data[first] = data[last];
+          data[last] = ogVal;
+          last--;
+        }
+      }
+      return first;
+    }
 }
