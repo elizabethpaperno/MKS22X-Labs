@@ -78,8 +78,8 @@ by maintaining a variable to keep track of this.*/
       }
     }
     public static void main(String[] args){
-      int [] data = new int[] {4,3,2,1,0};
-
+      int [] data = new int[] {-4,3,2,-1,0};
+      /*
       System.out.println("Original: "+Arrays.toString(data));
       System.out.println(quickselect(data, 5));
       int pivot = partition( data , 0, 4);
@@ -104,6 +104,11 @@ by maintaining a variable to keep track of this.*/
       System.out.println("Pivot value: "+data3[pivot3]+ ", Pivot index: "+pivot3);
       System.out.println("Modified: "+Arrays.toString(data3));
       System.out.println();
+      */
+      System.out.println("Testing QuickSort");
+      System.out.println("Original: "+Arrays.toString(data));
+      quicksort(data);
+      System.out.println("QuickSort: "+Arrays.toString(data));
     }
 
 }
