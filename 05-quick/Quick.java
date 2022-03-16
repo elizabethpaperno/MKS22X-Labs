@@ -67,7 +67,15 @@ by maintaining a variable to keep track of this.*/
       }
     }
     public static void quicksort(int[]data){
+      quicksort(data, 0, data.length - 1);
+    }
 
+    public static void quicksort(int []data, int start, int end){
+      if (start < end){
+        int piv = partition(data, start, end);
+        quicksort(data, piv + 1, end);
+        quicksort(data, start, piv - 1);
+      }
     }
     public static void main(String[] args){
       int [] data = new int[] {4,3,2,1,0};
