@@ -68,8 +68,10 @@ by maintaining a variable to keep track of this.*/
     }
 
     public static void main(String[] args){
-      int [] data = new int[] {4,3,6,1,0};
+      int [] data = new int[] {4,3,2,1,0};
+
       System.out.println("Original: "+Arrays.toString(data));
+      System.out.println(quickselect(data, 5));
       int pivot = partition( data , 0, 4);
       System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
       System.out.println("Modified: "+Arrays.toString(data));
