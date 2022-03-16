@@ -1,5 +1,5 @@
 import java.util.*;
-public class Preliminary {
+public class Quick {
     /*Modify the array such that:
   *1. A random index from start to end inclusive is chosen, the
   * corresponding element is designated the pivot element.
@@ -66,7 +66,9 @@ by maintaining a variable to keep track of this.*/
         return quickselect(data, k, start, partition - 1);
       }
     }
+    public static void quicksort(int[]data){
 
+    }
     public static void main(String[] args){
       int [] data = new int[] {4,3,2,1,0};
 
