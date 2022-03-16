@@ -16,17 +16,24 @@ public class Preliminary {
     arr[i2] = ogVal;
   }
 
+/* ADD When data element are equal to the pivot,
+place half of the equal values on the left side of
+the pivot and half on the right.
+You can alternate left and right as you find equal values
+by maintaining a variable to keep track of this.*/
   public static int partition ( int [] data, int start, int end){
     Random rng = new Random();
     int pivotIn = rng.nextInt(end-start+1)+start;
     int pivot = data[pivotIn];
+    //System.out.println(Arrays.toString(data));
     //System.out.println(pivot);
     swap(data, start, pivotIn);
+    //System.out.println(Arrays.toString(data));
     pivotIn = start;
     int low = pivotIn + 1;
     int high = end;
 
-    for(int i = start; i <= end; i++){
+    for(int i = start; i < end ; i++){
         if(data[low] < pivot){
           swap(data, pivotIn, low);
           pivotIn += 1;
@@ -38,19 +45,34 @@ public class Preliminary {
           //System.out.println(Arrays.toString(data));
         }
       }
-      return low - 1;
+      return pivotIn;
     }
 
     public static void main(String[] args){
-      int [] data = new int[] {4,3,2,1,0};
+      int [] data = new int[] {4,3,6,1,0};
       System.out.println("Original: "+Arrays.toString(data));
       int pivot = partition( data , 0, 4);
       System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
       System.out.println("Modified: "+Arrays.toString(data));
       System.out.println();
-      int[] t1 = {999,999,999,4,3,2,1,0,999,999,999};
-      System.out.println(partition(t1, 0, t1.length - 1));
-      System.out.println(Arrays.toString(t1));
+      int [] data1 = new int[] {4,3,2,1,0,997,998,999};
+      System.out.println("Original: "+Arrays.toString(data1));
+      int pivot1 = partition( data1 , 0, 4);
+      System.out.println("Pivot value: "+data1[pivot1]+ ", Pivot index: "+pivot1);
+      System.out.println("Modified: "+Arrays.toString(data1));
+      System.out.println();
+      int [] data2 = new int[] {997,998,999,4,3,2,1,0};
+      System.out.println("Original: "+Arrays.toString(data2));
+      int pivot2 = partition( data2 , 3, 7);
+      System.out.println("Pivot value: "+data2[pivot2]+ ", Pivot index: "+pivot2);
+      System.out.println("Modified: "+Arrays.toString(data2));
+      System.out.println();
+      int [] data3 = new int[] {993,994,995,4,3,2,1,0,997,998,999};
+      System.out.println("Original: "+Arrays.toString(data3));
+      int pivot3 = partition( data3 , 0, 4);
+      System.out.println("Pivot value: "+data3[pivot3]+ ", Pivot index: "+pivot3);
+      System.out.println("Modified: "+Arrays.toString(data3));
+      System.out.println();
     }
 
 }
