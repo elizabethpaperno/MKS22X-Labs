@@ -48,6 +48,25 @@ by maintaining a variable to keep track of this.*/
       return pivotIn;
     }
 
+        /*return the value that is the kth smallest value of the array.
+    *@param data must have a length > 0
+    *@param k is 0 to data.length-1 inclusive
+    *@postcondition The array may be modified. */
+    public static int quickselect(int []data, int k){
+        return quickselect(data, k, 0, data.length - 1);
+    }
+
+    public static int quickselect(int []data, int k, int start, int end){
+      int partition = partition(data, start, end);
+      if (k - 1 == partition){
+  			return data[partition];
+      }else if (k - 1 > partition){
+  			return quickselect(data, k, partition + 1, end);
+      }else{
+        return quickselect(data, k, start, partition - 1);
+      }
+    }
+
     public static void main(String[] args){
       int [] data = new int[] {4,3,6,1,0};
       System.out.println("Original: "+Arrays.toString(data));
