@@ -22,6 +22,7 @@ the pivot and half on the right.
 You can alternate left and right as you find equal values
 by maintaining a variable to keep track of this.*/
   public static int partition ( int [] data, int start, int end){
+    boolean left = true;
     Random rng = new Random();
     int pivotIn = rng.nextInt(end-start+1)+start;
     int pivot = data[pivotIn];
@@ -34,7 +35,19 @@ by maintaining a variable to keep track of this.*/
     int high = end;
 
     for(int i = start; i < end ; i++){
-        if(data[low] < pivot){
+        if (data[low] == pivot){
+          if(left){
+            swap(data, pivotIn, low);
+            pivotIn += 1;
+            low += 1;
+            left = false;
+          }else{
+            swap(data, low, high);
+            high--;
+            left = true;
+          }
+        }
+        else if(data[low] < pivot){
           swap(data, pivotIn, low);
           pivotIn += 1;
           low += 1;
