@@ -22,7 +22,7 @@ the pivot and half on the right.
 You can alternate left and right as you find equal values
 by maintaining a variable to keep track of this.*/
   public static int partition ( int [] data, int start, int end){
-    boolean left = true;
+    boolean goLeft = true;
     Random rng = new Random();
     int pivotIn = rng.nextInt(end-start+1)+start;
     int pivot = data[pivotIn];
@@ -35,27 +35,28 @@ by maintaining a variable to keep track of this.*/
     int high = end;
 
     for(int i = start; i < end ; i++){
-        if (data[low] == pivot){
-          if(left){
-            swap(data, pivotIn, low);
-            pivotIn += 1;
-            low += 1;
-            left = false;
-          }else{
-            swap(data, low, high);
-            high--;
-            left = true;
-          }
-        }
-        else if(data[low] < pivot){
+        if(data[low] < pivot){
           swap(data, pivotIn, low);
           pivotIn += 1;
           low += 1;
           //System.out.println(Arrays.toString(data));
-        }else{
+        }else if (data[low] > pivot){
           swap(data, low, high);
           high--;
           //System.out.println(Arrays.toString(data));
+        }else if (data[low] == pivot){
+          if(goLeft){
+            swap(data, pivotIn, low);
+            pivotIn += 1;
+            low += 1;
+            goLeft = false;
+            //System.out.println("left");
+          }else{
+            swap(data, low, high);
+            high--;
+            goLeft = true;
+            //System.out.println("right");
+          }
         }
       }
       return pivotIn;
@@ -91,11 +92,12 @@ by maintaining a variable to keep track of this.*/
       }
     }
     public static void main(String[] args){
-      int [] data = new int[] {-4,3,2,-1,0};
-      /*
+      int [] data = new int[10];
+      // {0,0,0,0,0,0,0,0,0};
+
       System.out.println("Original: "+Arrays.toString(data));
-      System.out.println(quickselect(data, 5));
-      int pivot = partition( data , 0, 4);
+      //System.out.println(quickselect(data, 5));
+      int pivot = partition( data , 0, 9);
       System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
       System.out.println("Modified: "+Arrays.toString(data));
       System.out.println();
@@ -117,11 +119,12 @@ by maintaining a variable to keep track of this.*/
       System.out.println("Pivot value: "+data3[pivot3]+ ", Pivot index: "+pivot3);
       System.out.println("Modified: "+Arrays.toString(data3));
       System.out.println();
-      */
+      /*
       System.out.println("Testing QuickSort");
       System.out.println("Original: "+Arrays.toString(data));
       quicksort(data);
       System.out.println("QuickSort: "+Arrays.toString(data));
+      */
     }
 
 }
