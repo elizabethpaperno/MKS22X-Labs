@@ -91,6 +91,11 @@ by maintaining a variable to keep track of this.*/
         quicksort(data, start, piv - 1);
       }
     }
+    //return righmost and leftmost indices of the middle pivot thing
+    public static int partitionDutch ( int [] data, int start, int end){
+      return 1;
+    }
+
     public static void main(String[] args){
       int [] data = new int[10];
       // {0,0,0,0,0,0,0,0,0};
