@@ -16,11 +16,6 @@ public class Quick {
     arr[i2] = ogVal;
   }
 
-/* ADD When data element are equal to the pivot,
-place half of the equal values on the left side of
-the pivot and half on the right.
-You can alternate left and right as you find equal values
-by maintaining a variable to keep track of this.*/
   public static int partition ( int [] data, int start, int end){
     boolean goLeft = true;
     Random rng = new Random();
@@ -97,12 +92,11 @@ by maintaining a variable to keep track of this.*/
     }
 
     public static void main(String[] args){
-      int [] data = new int[10];
-      // {0,0,0,0,0,0,0,0,0};
+      int [] data = {-1,-2,-3,-4,-5,-6,-7,-8,-9,-10};
 
       System.out.println("Original: "+Arrays.toString(data));
-      //System.out.println(quickselect(data, 5));
-      int pivot = partition( data , 0, 9);
+      System.out.println("QUCKSELECT: "+quickselect(data, 5));
+      int pivot = partition( data , 0, 8);
       System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
       System.out.println("Modified: "+Arrays.toString(data));
       System.out.println();
