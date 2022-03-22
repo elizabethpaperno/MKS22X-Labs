@@ -1,10 +1,23 @@
 public class Merge {
   public static int [] merge(int [] left, int[] right){
     //return a new array that is the merged version of left and right
+    int[] mergedArr = new int[left.length + right.length]
+    int leftIn = 0;
+    int rightIn = 0
+    for(int i = 0; i < mergedArr.length; i++){
+      if(left[leftIn] >= right[rightIn]){
+        mergedArr[i] = left[leftIn];
+        leftIn++;
+      }else{
+        mergedArr[i] = right[rightIn];
+        rightIn++;
+      }
+    }
+    return mergedArr;
   }
 
   public static void mergesort(int[] data){
-    int [] temp  =  mergeSortH(data);
+    int [] temp  = mergeSortH(data);
     //copy temp into data
     for(int i = 0; i < temp.length(); i++){
       temp[i] = data[i];
