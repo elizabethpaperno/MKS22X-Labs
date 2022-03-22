@@ -1,3 +1,4 @@
+import java.util.*;
 public class Merge {
   /*merge takes two sorted arrays and returns a new array that combines all
    *elements of both arrays in asorted order.
@@ -10,15 +11,18 @@ public class Merge {
     int[] mergedArr = new int[left.length + right.length];
     int leftIn = 0;
     int rightIn = 0;
-    for(int i = 0; i < mergedArr.length; i++){
-      if(left[leftIn] >= right[rightIn]){
-        mergedArr[i] = left[leftIn];
+    while(!(leftIn == left.length - 1 && rightIn == right.length - 1)){
+      if(left[leftIn] <= right[rightIn]){
+        System.out.println(left[leftIn]);
+        mergedArr[leftIn + rightIn] = left[leftIn];
         leftIn++;
       }else{
-        mergedArr[i] = right[rightIn];
+        System.out.println(right[rightIn]);
+        mergedArr[leftIn + rightIn] = right[rightIn];
         rightIn++;
       }
     }
+
     return mergedArr;
   }
 
@@ -54,5 +58,14 @@ public class Merge {
     for(int i = 0; i < data.length; i++){
       data[i] = temp[i];
     }
+  }
+
+  public static void main(String[] args){
+    int [] data = {1,3,5,7};
+    int [] data1 = {2,4,6,8};
+    //System.out.println("Original: "+Arrays.toString(data));
+    //mergesort(data);
+    //System.out.println("Sorted: "+Arrays.toString(data));
+    System.out.println("Merge: "+Arrays.toString(merge(data,data1)));
   }
 }
