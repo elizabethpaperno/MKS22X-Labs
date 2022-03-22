@@ -13,18 +13,29 @@ public class Merge {
     int rightIn = 0;
     while(!(leftIn == left.length - 1 && rightIn == right.length - 1)){
       if(left[leftIn] <= right[rightIn]){
-        System.out.println(left[leftIn]);
+        //System.out.println(left[leftIn]);
         mergedArr[leftIn + rightIn] = left[leftIn];
         leftIn++;
       }else{
-        System.out.println(right[rightIn]);
+        //System.out.println(right[rightIn]);
         mergedArr[leftIn + rightIn] = right[rightIn];
+        System.out.println(rightIn);
         rightIn++;
+
       }
     }
+    /*
+    for(int i=rightIn; i < right.length; i++){
+      mergedArr[rightIn] = right[rightIn];
+    }
+    for(int i=leftIn; i < left.length; i++){
+      mergedArr[leftIn] = left[leftIn];
+    }
 
+    */
     return mergedArr;
   }
+
 
   public static int[] mergesortH(int[] data){
     //if more than 1 element{
