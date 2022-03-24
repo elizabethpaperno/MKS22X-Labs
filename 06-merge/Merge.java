@@ -6,22 +6,34 @@ public class Merge {
    *@right a sorted array (this is a precondition)
    *@return a sorted array that contains all elements of left and right
    */
-  public static int [] merge(int [] left, int[] right){
+  public static int [] merge(int[] left, int[] right){
     //return a new array that is the merged version of left and right
     int[] mergedArr = new int[left.length + right.length];
     int leftIn = 0;
     int rightIn = 0;
-    while(!(leftIn == left.length - 1 && rightIn == right.length - 1)){
+    while(!(leftIn == left.length && rightIn == right.length)){
       if(left[leftIn] <= right[rightIn]){
-        //System.out.println(left[leftIn]);
+        System.out.println("Left: "+ left[leftIn]);
         mergedArr[leftIn + rightIn] = left[leftIn];
+        System.out.println("Left Index: " + leftIn);
         leftIn++;
+        if(leftIn == left.length){
+          for (int i = rightIn; i < right.length; i++){
+            mergedArr[leftIn + rightIn] = right[i];
+            rightIn++;
+          }
+        }
       }else{
-        //System.out.println(right[rightIn]);
+        System.out.println("Right: " + right[rightIn]);
         mergedArr[leftIn + rightIn] = right[rightIn];
-        System.out.println(rightIn);
+        System.out.println("Right Index: " + rightIn);
         rightIn++;
-
+        if(rightIn == right.length){
+          for (int i = leftIn; i < left.length; i++){
+            mergedArr[leftIn + rightIn] = left[i];
+            leftIn++;
+          }
+        }
       }
     }
     /*
@@ -74,6 +86,8 @@ public class Merge {
   public static void main(String[] args){
     int [] data = {1,3,5,7};
     int [] data1 = {2,4,6,8};
+    System.out.println("Left Array: "+Arrays.toString(data));
+    System.out.println("Right Array: "+Arrays.toString(data1));
     //System.out.println("Original: "+Arrays.toString(data));
     //mergesort(data);
     //System.out.println("Sorted: "+Arrays.toString(data));
