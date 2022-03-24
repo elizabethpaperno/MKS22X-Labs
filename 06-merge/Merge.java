@@ -13,9 +13,9 @@ public class Merge {
     int rightIn = 0;
     while(!(leftIn == left.length && rightIn == right.length)){
       if(left[leftIn] <= right[rightIn]){
-        System.out.println("Left: "+ left[leftIn]);
+        //System.out.println("Left: "+ left[leftIn]);
         mergedArr[leftIn + rightIn] = left[leftIn];
-        System.out.println("Left Index: " + leftIn);
+        //System.out.println("Left Index: " + leftIn);
         leftIn++;
         if(leftIn == left.length){
           for (int i = rightIn; i < right.length; i++){
@@ -24,9 +24,9 @@ public class Merge {
           }
         }
       }else{
-        System.out.println("Right: " + right[rightIn]);
+        //System.out.println("Right: " + right[rightIn]);
         mergedArr[leftIn + rightIn] = right[rightIn];
-        System.out.println("Right Index: " + rightIn);
+        //System.out.println("Right Index: " + rightIn);
         rightIn++;
         if(rightIn == right.length){
           for (int i = leftIn; i < left.length; i++){
@@ -36,15 +36,6 @@ public class Merge {
         }
       }
     }
-    /*
-    for(int i=rightIn; i < right.length; i++){
-      mergedArr[rightIn] = right[rightIn];
-    }
-    for(int i=leftIn; i < left.length; i++){
-      mergedArr[leftIn] = left[leftIn];
-    }
-
-    */
     return mergedArr;
   }
 
@@ -55,20 +46,23 @@ public class Merge {
     //right = copy other half of data
     //sort each half and merge them together
     //}
-    if (data.length > 0){
+    int[] temp = data;
+    if (data.length > 1){
       int[] left = new int[data.length/2];
       int[] right = new int[data.length - left.length];
-      for (int i = 0; i < left.length; i++){
-        left[i] = data[i];
+      for (int i = 0; i < data.length; i++){
+        if (i < left.length){
+          left[i] = data[i];
+        } else{
+          right[i - left.length] = data[i];
+        }
       }
-      int dataIn = (data.length - left.length) - 1;
-      for (int i = 0; i < left.length; i++){
-        left[i] = data[dataIn];
-        dataIn += 1;
-      }
-      return merge(mergesortH(left),mergesortH(right));
+      //System.out.println("Left: "+Arrays.toString(left));
+      //System.out.println("Right: "+Arrays.toString(right));
+      temp = merge(mergesortH(left),mergesortH(right));
     }
-    return new int[1]; //so this compiles
+    //System.out.println("mergesortH->"+Arrays.toString(temp));
+    return temp;
   }
 
   /*mergesort uses the recursive mergesortH method to create a sorted
@@ -84,13 +78,24 @@ public class Merge {
   }
 
   public static void main(String[] args){
-    int [] data = {1,3,5,7};
-    int [] data1 = {2,4,6,8};
+    int [] data = {1,6,7,8};
+    int [] data1 = {3,4,5,10,11};
+
     System.out.println("Left Array: "+Arrays.toString(data));
     System.out.println("Right Array: "+Arrays.toString(data1));
-    //System.out.println("Original: "+Arrays.toString(data));
-    //mergesort(data);
-    //System.out.println("Sorted: "+Arrays.toString(data));
     System.out.println("Merge: "+Arrays.toString(merge(data,data1)));
+
+
+
+
+    System.out.println("Original: "+Arrays.toString(data));
+    mergesort(data);
+    System.out.println("Sorted: "+Arrays.toString(data));
+
+
+    //System.out.println("Original: "+Arrays.toString(data1));
+    //mergesort(data1);
+    //System.out.println("Sorted: "+Arrays.toString(data1));
+
   }
 }
