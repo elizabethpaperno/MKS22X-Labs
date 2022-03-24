@@ -87,8 +87,6 @@ public class Merge {
     System.out.println("Merge: "+Arrays.toString(merge(data,data1)));
     */
 
-
-
     System.out.println("Original: "+Arrays.toString(data));
     mergesort(data);
     System.out.println("Sorted: "+Arrays.toString(data));
