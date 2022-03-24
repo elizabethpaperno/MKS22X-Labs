@@ -81,10 +81,11 @@ public class Merge {
     int [] data = {1,6,7,8};
     int [] data1 = {3,4,5,10,11};
 
+    /*
     System.out.println("Left Array: "+Arrays.toString(data));
     System.out.println("Right Array: "+Arrays.toString(data1));
     System.out.println("Merge: "+Arrays.toString(merge(data,data1)));
-
+    */
 
 
 
