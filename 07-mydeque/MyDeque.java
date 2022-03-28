@@ -33,6 +33,7 @@ public class MyDeque<E>{
 
     return str;
     */
+    return "";
   }
   public String toStringDebug(){
     return Arrays.toString(data);
@@ -72,11 +73,19 @@ public class MyDeque<E>{
     return data[end];
   }
   private void resize(){
+    boolean foundEnd = false;
     if (this.size() == data.length){
       @SuppressWarnings("unchecked")
       E[] d = (E[])new Object[data.length * 2 + 1];
       for (int i = 0; i < this.size(); i++){
+
         d[i] = data[i];
+        if (!foundEnd){
+          if(d[i] == null){
+            foundEnd = true;
+            end = i;
+          }
+        }
       }
       this.data = d;
     }
