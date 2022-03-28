@@ -4,6 +4,7 @@ public class MyDeque<E>{
   private int size;
   private int start, end;
 
+  //SHOULD BE SPECIAL CASE FOR EMPTY WHERE START ABD EBD ARE EQUAl
   public MyDeque(){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[10];
