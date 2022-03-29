@@ -105,6 +105,8 @@ public class MyDeque<E>{
     }
     return data[end];
   }
+
+  //CHANGE THIS TO MAKE START AT INDEX 0 and end at inde end
   private void resize(){
     boolean foundEnd = false;
     if (this.size() == data.length){
