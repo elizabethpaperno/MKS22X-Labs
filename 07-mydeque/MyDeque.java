@@ -10,16 +10,16 @@ public class MyDeque<E>{
     E[] d = (E[])new Object[10];
     data = d;
     size = 0;
-    start = 10/2 - 1;
-    end = start + 1;
+    //start = 10/2 - 1;
+    //end = start + 1;
   }
   public MyDeque(int initialCapacity){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
     data = d;
     size = 0;
-    start = initialCapacity/2 - 1;
-    end = start + 1;
+    //start = initialCapacity/2 - 1;
+    //end = start + 1;
   }
   public int size(){
     return size;
@@ -40,16 +40,28 @@ public class MyDeque<E>{
     return Arrays.toString(data);
   }
   public void addFirst(E element){
-    resize();
-    //ADD CONDITION TO WRAP AROUND
-    start -= 1;
-    data[start] = element;
+    if (size == 0){
+      start = data.length/2 + 1;
+      end = start;
+      data[start] = element;
+    }else {
+      resize();
+      //ADD CONDITION TO WRAP AROUND
+      start -= 1;
+      data[start] = element;
+    }
   }
   public void addLast(E element){
     //ADD CONDITION TO WRAP AROUND
-    resize();
-    end += 1;
-    data[end] = element;
+    if (size == 0){
+      start = data.length/2 + 1;
+      end = start;
+      data[end] = element;
+    }else {
+      resize();
+      end += 1;
+      data[end] = element;
+    }
   }
   public E removeFirst(){
     if(size() == 0){
