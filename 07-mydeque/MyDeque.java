@@ -54,6 +54,7 @@ public class MyDeque<E>{
       }
       data[start] = element;
     }
+    size += 1;
   }
   public void addLast(E element){
     //ADD CONDITION TO WRAP AROUND
@@ -63,13 +64,14 @@ public class MyDeque<E>{
       data[end] = element;
     }else {
       resize();
-      if (end == data.length){
+      if (end == data.length - 1){
         end = 0;
       }else{
         end += 1;
       }
       data[end] = element;
     }
+    size += 1;
   }
   public E removeFirst(){
     if(size() == 0){
@@ -113,7 +115,7 @@ public class MyDeque<E>{
         if (!foundEnd){
           if(d[i] == null){
             foundEnd = true;
-            end = i;
+            end = i + 1;
           }
         }
       }
