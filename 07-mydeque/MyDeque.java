@@ -40,26 +40,34 @@ public class MyDeque<E>{
     return Arrays.toString(data);
   }
   public void addFirst(E element){
-    if (size == 0){
+    if (size() == 0){
       start = data.length/2 + 1;
       end = start;
       data[start] = element;
     }else {
       resize();
       //ADD CONDITION TO WRAP AROUND
-      start -= 1;
+      if (start == 0){
+        start = data.length - 1;
+      }else{
+        start -= 1;
+      }
       data[start] = element;
     }
   }
   public void addLast(E element){
     //ADD CONDITION TO WRAP AROUND
-    if (size == 0){
+    if (size() == 0){
       start = data.length/2 + 1;
       end = start;
       data[end] = element;
     }else {
       resize();
-      end += 1;
+      if (end == data.length){
+        end = 0;
+      }else{
+        end += 1;
+      }
       data[end] = element;
     }
   }
@@ -69,7 +77,6 @@ public class MyDeque<E>{
     }
     E first = data[start];
     data[start] = null;
-    //ADD CONDITION TO WRAP AROUND
     start += 1;
     size -= 1;
     return first;
@@ -80,7 +87,6 @@ public class MyDeque<E>{
     }
     E last = data[end];
     data[end] = null;
-    //ADD CONDITION TO WRAP AROUND
     end -= 1;
     size -= 1;
     return last;
