@@ -52,6 +52,9 @@ public class MyDeque<E>{
     data[end] = element;
   }
   public E removeFirst(){
+    if(size() == 0){
+      throw new NoSuchElementException("NoSuchElementException: the Deque is empty");
+    }
     E first = data[start];
     data[start] = null;
     //ADD CONDITION TO WRAP AROUND
@@ -60,6 +63,9 @@ public class MyDeque<E>{
     return first;
   }
   public E removeLast(){
+    if(size() == 0){
+      throw new NoSuchElementException("NoSuchElementException: the Deque is empty");
+    }
     E last = data[end];
     data[end] = null;
     //ADD CONDITION TO WRAP AROUND
@@ -68,9 +74,15 @@ public class MyDeque<E>{
     return last;
   }
   public E getFirst(){
+    if(size() == 0){
+      throw new NoSuchElementException("NoSuchElementException: the Deque is empty");
+    }
     return data[start];
   }
   public E getLast(){
+    if(size() == 0){
+      throw new NoSuchElementException("NoSuchElementException: the Deque is empty");
+    }
     return data[end];
   }
   private void resize(){
@@ -79,7 +91,6 @@ public class MyDeque<E>{
       @SuppressWarnings("unchecked")
       E[] d = (E[])new Object[data.length * 2 + 1];
       for (int i = 0; i < this.size(); i++){
-
         d[i] = data[i];
         if (!foundEnd){
           if(d[i] == null){
