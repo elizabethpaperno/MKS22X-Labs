@@ -23,5 +23,6 @@ public class Driver {
     System.out.println(nums.toStringDebug());
     nums.addLast(12);
     System.out.println(nums.toStringDebug());
+    System.out.println(nums);
   }
 }
