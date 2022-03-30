@@ -86,7 +86,11 @@ public class MyDeque<E>{
     }
     E first = data[start];
     data[start] = null;
-    start += 1;
+    if (start == data.length - 1){
+      start = 0;
+    }else{
+      start += 1;
+    }
     size -= 1;
     return first;
   }
@@ -96,7 +100,11 @@ public class MyDeque<E>{
     }
     E last = data[end];
     data[end] = null;
-    end -= 1;
+    if (end == 0){
+      end = data.length - 1;
+    }else{
+      end -= 1;
+    }
     size -= 1;
     return last;
   }
@@ -113,7 +121,6 @@ public class MyDeque<E>{
     return data[end];
   }
 
-  //CHANGE THIS TO MAKE START AT INDEX 0 and end at inde end
   private void resize(){
     if (this.size() == data.length){
       @SuppressWarnings("unchecked")
