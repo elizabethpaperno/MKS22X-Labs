@@ -4,7 +4,6 @@ public class MyDeque<E>{
   private int size;
   private int start, end;
 
-  //SHOULD BE SPECIAL CASE FOR EMPTY WHERE START ABD EBD ARE EQUAl
   public MyDeque(){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[10];
@@ -25,28 +24,34 @@ public class MyDeque<E>{
     return size;
   }
   public String toString(){
-    //fill in later
-    /*
     String str = "[";
-    for(int i = start; i < this.size(); i++){
-      str += data[i] + ", ";
+    int dequeIndex = start;
+    for(int i=0; i < size();i++){
+      if (dequeIndex == data.length){
+        dequeIndex = 0;
+      }
+      str += data[dequeIndex];
+      if (dequeIndex != end){
+        str += ", ";
+      }
+      dequeIndex += 1;
     }
-
-    return str;
-    */
-    return "";
+    return str + "]";
   }
+
   public String toStringDebug(){
     return Arrays.toString(data);
   }
   public void addFirst(E element){
+    if(element == null){
+      throw new NullPointerException("NullPointerException: cannot add null element to deque");
+    }
+    resize();
     if (size() == 0){
-      start = data.length/2 + 1;
+      start = data.length/2;
       end = start;
       data[start] = element;
     }else {
-      resize();
-      //ADD CONDITION TO WRAP AROUND
       if (start == 0){
         start = data.length - 1;
       }else{
@@ -57,13 +62,15 @@ public class MyDeque<E>{
     size += 1;
   }
   public void addLast(E element){
-    //ADD CONDITION TO WRAP AROUND
+    if(element == null){
+      throw new NullPointerException("NullPointerException: cannot add null element to deque");
+    }
+    resize();
     if (size() == 0){
-      start = data.length/2 + 1;
+      start = data.length/2;
       end = start;
       data[end] = element;
     }else {
-      resize();
       if (end == data.length - 1){
         end = 0;
       }else{
@@ -108,20 +115,20 @@ public class MyDeque<E>{
 
   //CHANGE THIS TO MAKE START AT INDEX 0 and end at inde end
   private void resize(){
-    boolean foundEnd = false;
     if (this.size() == data.length){
       @SuppressWarnings("unchecked")
       E[] d = (E[])new Object[data.length * 2 + 1];
+      int dequeIndex = start;
       for (int i = 0; i < this.size(); i++){
-        d[i] = data[i];
-        if (!foundEnd){
-          if(d[i] == null){
-            foundEnd = true;
-            end = i + 1;
-          }
+        if (dequeIndex == data.length){
+          dequeIndex = 0;
         }
+        d[i] = data[dequeIndex];
+        dequeIndex += 1;
       }
       this.data = d;
+      start = 0;
+      end = size - 1;
     }
   }
 }
