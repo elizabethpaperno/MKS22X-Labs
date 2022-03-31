@@ -10,7 +10,7 @@ public class Calculator{
   *        Either "too many operands" or "too few operands for operation _" replace _ with +,- etc.
   */
   public static double eval(String s){
-    Deque<Double> stack = new Deque<Double>();
+    ArrayDeque<Double> stack = new ArrayDeque<Double>();
     ArrayList<Character> list = new ArrayList<Character>();
     Scanner str = new Scanner(s);
 
@@ -18,6 +18,7 @@ public class Calculator{
       list.add(str.next().charAt(0));
     }
 
+    System.out.println(list);
     for(int i = 0; i < list.size(); i++){
       if (list.get(i) == '*'){
         //multiplication
@@ -43,5 +44,10 @@ public class Calculator{
         stack.addLast((double) list.get(i));
       }
     }
+    return stack.getFirst();
+  }
+  public static void main(String[] args){
+    System.out.println(eval("11 3 - 4 + 2.5 *"));
+    System.out.println(eval("10 2.0 +"));
   }
 }
