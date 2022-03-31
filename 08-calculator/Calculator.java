@@ -10,11 +10,38 @@ public class Calculator{
   *        Either "too many operands" or "too few operands for operation _" replace _ with +,- etc.
   */
   public static double eval(String s){
-    Deque<Double> stack;
-    ArrayList<String> list = new ArrayList<String>();
+    Deque<Double> stack = new Deque<Double>();
+    ArrayList<Character> list = new ArrayList<Character>();
     Scanner str = new Scanner(s);
+
     while(str.hasNext()){
-      list.add(str.next());
+      list.add(str.next().charAt(0));
+    }
+
+    for(int i = 0; i < list.size(); i++){
+      if (list.get(i) == '*'){
+        //multiplication
+        stack.addLast(stack.pop() * stack.pop());
+      }else if (list.get(i) == '+'){
+        //addition
+        stack.addLast(stack.pop() * stack.pop());
+      }else if (list.get(i) == '/'){
+        //subtraction
+        double pop1 = stack.pop();
+        double pop2 = stack.pop();
+        stack.addLast(pop2 / pop1);
+      }else if (list.get(i) == '-'){
+        //subtraction
+        double pop1 = stack.pop();
+        double pop2 = stack.pop();
+        stack.addLast(pop2 - pop1);
+      }else if (list.get(i) == '%'){
+        double pop1 = stack.pop();
+        double pop2 = stack.pop();
+        stack.addLast(pop2 % pop1);
+      }else{
+        stack.addLast((double) list.get(i));
+      }
     }
   }
 }
