@@ -10,6 +10,11 @@ public class Calculator{
   *        Either "too many operands" or "too few operands for operation _" replace _ with +,- etc.
   */
   public static double eval(String s){
-
+    Deque<Double> stack;
+    ArrayList<String> list = new ArrayList<String>();
+    Scanner str = new Scanner(s);
+    while(str.hasNext()){
+      list.add(str.next());
+    }
   }
 }
