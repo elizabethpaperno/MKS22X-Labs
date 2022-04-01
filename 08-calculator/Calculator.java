@@ -11,38 +11,39 @@ public class Calculator{
   */
   public static double eval(String s){
     ArrayDeque<Double> stack = new ArrayDeque<Double>();
-    ArrayList<Character> list = new ArrayList<Character>();
+    ArrayList<String> list = new ArrayList<String>();
     Scanner str = new Scanner(s);
 
     while(str.hasNext()){
-      list.add(str.next().charAt(0));
+      list.add(str.next());
     }
 
     System.out.println(list);
     for(int i = 0; i < list.size(); i++){
-      if (list.get(i) == '*'){
+      if (list.get(i).equals("*")){
         //multiplication
         stack.addLast(stack.pop() * stack.pop());
-      }else if (list.get(i) == '+'){
+      }else if (list.get(i).equals("+")){
         //addition
-        stack.addLast(stack.pop() * stack.pop());
-      }else if (list.get(i) == '/'){
+        stack.addLast(stack.pop() + stack.pop());
+      }else if (list.get(i).equals("/")){
         //subtraction
         double pop1 = stack.pop();
         double pop2 = stack.pop();
-        stack.addLast(pop2 / pop1);
-      }else if (list.get(i) == '-'){
+        stack.addLast(pop1 / pop2);
+      }else if (list.get(i).equals("-")){
         //subtraction
         double pop1 = stack.pop();
         double pop2 = stack.pop();
-        stack.addLast(pop2 - pop1);
-      }else if (list.get(i) == '%'){
+        stack.addLast(pop1 - pop2);
+      }else if (list.get(i).equals("%")){
         double pop1 = stack.pop();
         double pop2 = stack.pop();
-        stack.addLast(pop2 % pop1);
+        stack.addLast(pop1 % pop2);
       }else{
-        stack.addLast((double) list.get(i));
+        stack.addLast(Double.parseDouble(list.get(i)));
       }
+      System.out.println(stack);
     }
     return stack.getFirst();
   }
