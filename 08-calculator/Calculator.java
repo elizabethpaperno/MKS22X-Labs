@@ -18,6 +18,7 @@ public class Calculator{
     while(str.hasNext()){
       list.add(str.next());
     }
+    //System.out.println(list);
 
     //throw exception for case of empty string
     if (list.size() == 0){
@@ -36,41 +37,42 @@ public class Calculator{
           if (stack.size() < 2){
             throw new IllegalArgumentException("too few operands for operation *");
           }
-          stack.addLast(stack.pop() * stack.pop());
+          stack.addLast(stack.removeLast() * stack.removeLast());
           break;
         case "+":
           if (stack.size() < 2){
             throw new IllegalArgumentException("too few operands for operation +");
           }
-          stack.addLast(stack.pop() + stack.pop());
+          stack.addLast(stack.removeLast() + stack.removeLast());
           break;
         case "/":
           if (stack.size() < 2){
             throw new IllegalArgumentException("too few operands for operation /");
           }
-          double pop1 = stack.pop();
-          double pop2 = stack.pop();
-          stack.addLast(pop1 / pop2);
+          double removeLast1 = stack.removeLast();
+          double removeLast2 = stack.removeLast();
+          stack.addLast(removeLast2 / removeLast1);
           break;
         case "-":
           if (stack.size() < 2){
             throw new IllegalArgumentException("too few operands for operation -");
           }
-          double pop3 = stack.pop();
-          double pop4 = stack.pop();
-          stack.addLast(pop3 - pop4);
+          double removeLast3 = stack.removeLast();
+          double removeLast4 = stack.removeLast();
+          stack.addLast(removeLast4 - removeLast3);
           break;
         case "%":
           if (stack.size() < 2){
             throw new IllegalArgumentException("too few operands for operation %");
           }
-          double pop5 = stack.pop();
-          double pop6 = stack.pop();
-          stack.addLast(pop5 % pop6);
+          double removeLast5 = stack.removeLast();
+          double removeLast6 = stack.removeLast();
+          stack.addLast(removeLast6 % removeLast5);
           break;
         default:
           stack.addLast(Double.parseDouble(list.get(i)));
         }
+        //System.out.println(stack);
       }
 
       if (stack.size() > 1){
@@ -78,54 +80,7 @@ public class Calculator{
       }
       return stack.getFirst();
     }
-/*
-      if (list.get(i).equals("*")){
-        //multiplication
-        if (stack.size() < 2){
-          throw new IllegalArgumentException("too few operands for operation *");
-        }
-        stack.addLast(stack.pop() * stack.pop());
-      }else if (list.get(i).equals("+")){
-        //addition
-        if (stack.size() < 2){
-          throw new IllegalArgumentException("too few operands for operation +");
-        }
-        stack.addLast(stack.pop() + stack.pop());
-      }else if (list.get(i).equals("/")){
-        //subtraction
-        if (stack.size() < 2){
-          throw new IllegalArgumentException("too few operands for operation /");
-        }
-        double pop1 = stack.pop();
-        double pop2 = stack.pop();
-        stack.addLast(pop1 / pop2);
-      }else if (list.get(i).equals("-")){
-        //subtraction
-        if (stack.size() < 2){
-          throw new IllegalArgumentException("too few operands for operation -");
-        }
-        double pop1 = stack.pop();
-        double pop2 = stack.pop();
-        stack.addLast(pop1 - pop2);
-      }else if (list.get(i).equals("%")){
-        if (stack.size() < 2){
-          throw new IllegalArgumentException("too few operands for operation %");
-        }
-        double pop1 = stack.pop();
-        double pop2 = stack.pop();
-        stack.addLast(pop1 % pop2);
-      }else{
-        stack.addLast(Double.parseDouble(list.get(i)));
-      }
 
-    }
-    if (stack.size() > 1){
-      throw new IllegalArgumentException("too many operands");
-    }
-    return stack.getFirst();
-  }
-
-  */
   public static void main(String[] args){
     System.out.println(eval("11 3 - 4 + 2.5 *"));
     System.out.println(eval("10 2.0 +"));
