@@ -91,7 +91,7 @@ public class BurnTrees{
   }
 
   public static double avgNtimes (int numRuns, int width, double den) {
-    int sum = 0;
+    double sum = 0;
     for (int i = 0; i < numRuns; i++) {
       BurnTrees b = new BurnTrees(width,width,den);
       sum += b.run();
@@ -122,26 +122,48 @@ public class BurnTrees{
       //int ans = b.outputAll();//print all screens one after another
       //System.out.println(ans);//print the final answer
       */
+
+      System.out.println("Board Size: 300, Reps: 150");
+      for (double den = .05; den < 1; den += .05){
+        double ans = avgNtimes(150, 300, den);
+        System.out.println("|" + den * 100 + "%| "+ ans + "|");
+      }
+      System.out.println("Board Size: 300, Reps: 250");
+      for (double den = .55; den < .65; den += .01){
+        double ans = avgNtimes(150, 300, den);
+        System.out.println("|" + (int) (den * 100) + "%| "+ ans + "|");
+      }
+
+      /*
       System.out.println("Board Size: 100");
       for (double den = .05; den < 1; den += .05){
         double ans = avgNtimes(100, 100, den);
         System.out.println("|" + den * 100 + "%| "+ ans + "|");
       }
-      System.out.println("Board Size: 300");
-      for (double den = .05; den < 1; den += .05){
-        double ans = avgNtimes(100, 300, den);
-        System.out.println("|" + den * 100 + "%| "+ ans + "|");
+      for (double den = .55; den < .65; den += .01){
+        double ans = avgNtimes(100, 100, den);
+        System.out.println("|" + (int) (den * 100) + "%| "+ ans + "|");
       }
-      System.out.println("Board Size: 500");
+
+      System.out.println("Board Size: 450, Inc: 5%, Reps: 150");
       for (double den = .05; den < 1; den += .05){
-        double ans = avgNtimes(100, 500, den);
-        System.out.println("|" + den * 100 + "%| "+ ans + "|");
+        double ans = avgNtimes(150, 450, den);
+        System.out.println("|" + (int) (den * 100) + "%| "+ ans + "|");
       }
-      /*
-      System.out.println("Board Size: 1000");
+      System.out.println("Board Size: 450, Inc: 1%, Reps: 150");
+      for (double den = .55; den < .65; den += .01){
+        double ans = avgNtimes(150, 450, den);
+        System.out.println("|" + (int) (den * 100) + "%| "+ ans + "|");
+      }
+
+      System.out.println("Board Size: 1000, Reps: 100");
       for (double den = .05; den < 1; den += .05){
-        double ans = avgNtimes(1000, 1000, den);
-        System.out.println(den * 100 + "%: "+ ans);
+        double ans = avgNtimes(100, 1000, den);
+        System.out.println("|" + (int) (den * 100) + "%| "+ ans + "|");
+      }
+      for (double den = .55; den < .65; den += .01){
+        double ans = avgNtimes(100, 1000, den);
+        System.out.println("|" + (int) (den * 100) + "%| "+ ans + "|");
       }
       */
     }
