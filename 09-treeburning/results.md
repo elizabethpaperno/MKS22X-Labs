@@ -1,4 +1,3 @@
-
 ### Why did you choose the board size for your finalized table?
 ### Why did you choose the number of repetitions size for your finalized table?
 ### What did your testing show about changing the board size?
