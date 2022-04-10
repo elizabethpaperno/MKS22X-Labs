@@ -129,8 +129,8 @@ public class BurnTrees{
         System.out.println("|" + den * 100 + "%| "+ ans + "|");
       }
       System.out.println("Board Size: 300, Reps: 250");
-      for (double den = .55; den < .65; den += .01){
-        double ans = avgNtimes(150, 300, den);
+      for (double den = .55; den <= .65; den += .01){
+        double ans = avgNtimes(250, 300, den);
         System.out.println("|" + (int) (den * 100) + "%| "+ ans + "|");
       }
 

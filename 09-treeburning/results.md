@@ -5,7 +5,7 @@ I chose __150__ repetitions when testing for 5% intervals because running the si
 ### 3. What did your testing show about changing the board size?
 My testing showed that increasing the board size prolonged the run time but running board sizes up to about 650 could be done in a reasonable enough time with 150 repetitions meaning that the run time of the algorithm was not exponential as this could not have been plausible otherwise.
 ### 4. Knowing that there were differences based on boardsize, what was the relationship between the board size and the maximum burn time? How did you test this?
-An increased board size did not change the density value with the maximum burn time as converged at 60% for board sizes larger than 200. However, the maximum burn time (for that value and others) changed significantly, the average burn times with boards with larger sizes were significantly higher than those on smaller boards. 
+An increased board size did not change the density value with the maximum burn time as converged at 60% for board sizes larger than 200. However, the maximum burn time (for that value and others) changed significantly, the average burn times with boards with larger sizes were significantly higher than those on smaller boards.
 ### 5. What density of trees yields the maximum burn time?
 __60% Density__
 
@@ -40,13 +40,13 @@ __60% Density__
 
 | Density  | Avg Burn Time  |
 | ------------- |:---------|
-|55%| 107.75333333333333|
-|56%| 138.14|
-|57%| 192.42|
-|58%| 327.2733333333333|
-|59%| 526.8333333333334|
-|60%| 722.7666666666667|
-|61%| 666.62|
-|62%| 579.52|
-|63%| 530.0533333333333|
-|64%| 501.4266666666667|
+|55%| 106.156|
+|56%| 145.888|
+|57%| 197.4|
+|58%| 328.608|
+|59%| 558.412|
+|60%| 707.316|
+|61%| 674.084|
+|62%| 588.776|
+|63%| 535.036|
+|64%| 498.836|
