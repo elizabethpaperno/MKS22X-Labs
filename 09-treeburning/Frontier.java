@@ -11,6 +11,6 @@ import java.io.*;public class Frontier{
     frontier.addLast(location);
   }
   public int[] remove(){
-    return frontier.removeLast();
+    return frontier.removeFirst();
   }
 }

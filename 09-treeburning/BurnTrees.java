@@ -26,24 +26,30 @@ public class BurnTrees{
    */
   public void checkSurround (int[] ogCord, int xinc, int yinc){
     //ADD CHECK FOR OUT OF BOUNDS
-    if (ogCord[ogCord[0] + xinc] > -1 && ogCord[ogCord[0] + xinc] < map[ogCord[ogCord[0] + xinc]].length ){
-      if (map[ogCord[ogCord[0] + xinc]][ogCord[ogCord[1] + yinc]] == TREE){
-        int[] newCord = {ogCord[ogCord[0] + xinc], ogCord[ogCord[1] + yinc]};
-        map[newCord[0]][newCord[1]] = FIRE;
-        frontier.add(newCord);
-      }
+    if (map[ogCord[0] + xinc][ogCord[1] + yinc] == TREE){
+      int[] newCord = {ogCord[0] + xinc, ogCord[1] + yinc};
+      map[newCord[0]][newCord[1]] = FIRE;
+      frontier.add(newCord);
     }
   }
   public void tick(){
     ticks++;//leave this here.
     int ogSize = frontier.size();
-    for (int i = 0; i < ogSize - 1; i++){
+    for (int i = 0; i < ogSize; i++){
       int[] ogCord = frontier.remove();
-      checkSurround(ogCord, 0,1);
-      checkSurround(ogCord, 1,0);
-      checkSurround(ogCord, -1,0);
-      checkSurround(ogCord, 0,-1);
-      map[ogCord[ogCord[0]]][ogCord[ogCord[1]]] = ASH;
+      map[ogCord[0]][ogCord[1]] = ASH;
+      if (ogCord[1] < map[ogCord[0]].length - 1){
+        checkSurround(ogCord, 0,1);
+      }
+      if (ogCord[0] < map.length - 1) {
+        checkSurround(ogCord, 1,0);
+      }
+      if (ogCord[0] > 0) {
+        checkSurround(ogCord, -1,0);
+      }
+      if (ogCord[1] > 0) {
+        checkSurround(ogCord, 0,-1);
+      }
     }
     //YOU MUST IMPLEMENT THE REST OF THIS METHOD
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
@@ -77,7 +83,7 @@ public class BurnTrees{
     //otherwise it is complete.
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
-        int[] cord = map[i];
+        int[] cord = {i,0};
         frontier.add(cord);
         map[i][0]=FIRE;
       }
