@@ -90,9 +90,17 @@ public class BurnTrees{
     }
   }
 
-
+  public static double avgNtimes (int numRuns, int width, double den) {
+    int sum = 0;
+    for (int i = 0; i < numRuns; i++) {
+      BurnTrees b = new BurnTrees(width,width,den);
+      sum += b.run();
+    }
+    return sum / numRuns;
+  }
 
     public static void main(String[]args){
+      /*
       int WIDTH = 20;
       int HEIGHT = 20;
       int DELAY = 200;
@@ -113,6 +121,29 @@ public class BurnTrees{
 
       //int ans = b.outputAll();//print all screens one after another
       //System.out.println(ans);//print the final answer
+      */
+      System.out.println("Board Size: 100");
+      for (double den = .05; den < 1; den += .05){
+        double ans = avgNtimes(100, 100, den);
+        System.out.println("|" + den * 100 + "%| "+ ans + "|");
+      }
+      System.out.println("Board Size: 300");
+      for (double den = .05; den < 1; den += .05){
+        double ans = avgNtimes(100, 300, den);
+        System.out.println("|" + den * 100 + "%| "+ ans + "|");
+      }
+      System.out.println("Board Size: 500");
+      for (double den = .05; den < 1; den += .05){
+        double ans = avgNtimes(100, 500, den);
+        System.out.println("|" + den * 100 + "%| "+ ans + "|");
+      }
+      /*
+      System.out.println("Board Size: 1000");
+      for (double den = .05; den < 1; den += .05){
+        double ans = avgNtimes(1000, 1000, den);
+        System.out.println(den * 100 + "%: "+ ans);
+      }
+      */
     }
 
 
