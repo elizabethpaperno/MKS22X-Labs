@@ -8,6 +8,8 @@ void mouseClicked() {
   //The x and y positions are the same as the mouse
   //the radius should be between in the range [20.0,70.0)
   //the xSpeed and ySpeed should be in the range [-3.0,3.0)
+   Orb o = new Orb(mouseX, mouseY, random(-3,3), random(-3,3), random(19, 70));
+   orbList.add(o);
 }
 void draw() {
   background(255);
