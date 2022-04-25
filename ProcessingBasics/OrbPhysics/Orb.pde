@@ -47,4 +47,12 @@ public class Orb {
     //gravitational constant.
     ySpeed = 0.5 + ySpeed;
   }
+  
+  void attract(Orb other){
+    float dist = dist(x,y, other.x, other.y);
+    xSpeed += (other.x - x)/(dist * dist); 
+    x += xSpeed;
+    ySpeed += (other.y - y)/(dist * dist);
+    y += ySpeed;
+  }
 }
