@@ -2,9 +2,8 @@ ArrayList<Orb>orbList;
 Orb attractor;
 void setup() {
   size(1000, 700);
-  
-
   orbList = new ArrayList<Orb>();
+  
 }
 void mouseClicked() {
   //add a new Orb to the orbList, constructed as follows:
@@ -16,14 +15,16 @@ void mouseClicked() {
 }
 void draw() {
   background(255);
+  fill(0,0,255);
+  attractor = new Orb(width/2,height/2,0,0, 10);
+  attractor.display();
   /*bounce
   for (Orb o : orbList) {
     o.move();
     o.display();
   }
   */
-  attractor = new Orb(width/2,height/2,0,0, 100);
-  attractor.display();
+  
   for (Orb o : orbList) {
     o.attract(attractor);
     o.display();
