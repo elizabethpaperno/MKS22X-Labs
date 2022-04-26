@@ -1,7 +1,8 @@
 ArrayList<Orb>orbList;
 Orb attractor;
+String MODE; 
 void setup() {
-  size(1000, 700);
+  size(1000, 800);
   orbList = new ArrayList<Orb>();
   
 }
@@ -10,8 +11,19 @@ void mouseClicked() {
   //The x and y positions are the same as the mouse
   //the radius should be between in the range [20.0,70.0)
   //the xSpeed and ySpeed should be in the range [-3.0,3.0)
-   Orb o = new Orb(mouseX, mouseY, random(-3,3), random(-3,3), random(19, 70));
+   Orb o = new Orb(mouseX, mouseY, 5, 0, 20);
    orbList.add(o);
+}
+void keyPressed() {
+  if (keyCode == BACKSPACE) {
+    orbList = new ArrayList<Orb>();;
+  } else if (key == ' '){
+    if (MODE == "GRAVITY"){
+      MODE = "ORBIT";
+    }else{
+      MODE = "GRAVITY";
+    }
+  }
 }
 void draw() {
   background(255);
