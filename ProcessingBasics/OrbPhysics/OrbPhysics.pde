@@ -1,10 +1,10 @@
 ArrayList<Orb>orbList;
 Orb attractor;
-String MODE; 
+String MODE = "ORBIT"; 
 void setup() {
   size(1000, 800);
   orbList = new ArrayList<Orb>();
-  
+  attractor = new Orb(width/2,height/2,0,0, 10);
 }
 void mouseClicked() {
   //add a new Orb to the orbList, constructed as follows:
@@ -28,20 +28,24 @@ void keyPressed() {
 void draw() {
   background(255);
   fill(0,0,255);
-  attractor = new Orb(width/2,height/2,0,0, 10);
-  attractor.display();
-  /*bounce
-  for (Orb o : orbList) {
-    o.move();
-    o.display();
-  }
-  */
   
+  attractor.display();
+  if (MODE == "GRAVITY"){
+    for (Orb o : orbList) {
+      o.move();
+      o.display();
+    }
+  }
+  
+  if (MODE == "ORBIT"){
   for (Orb o : orbList) {
     o.attract(attractor);
     o.display();
   }
+  }
   fill(0);
+  text(frameRate, 20, 20);
+  text(MODE, 20, 10);
   text(frameRate, 20, 20);
   text(orbList.size(), 20, 40);
 }
