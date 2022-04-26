@@ -24,7 +24,7 @@ public class Orb {
     fill(c);
     
     ellipse(x, y, radius, radius);
-
+    line(x, y, x + 7 * xSpeed, y + 7 * ySpeed); 
   }
 
   void move() {

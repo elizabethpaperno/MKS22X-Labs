@@ -4,7 +4,7 @@ String MODE = "ORBIT";
 void setup() {
   size(1000, 800);
   orbList = new ArrayList<Orb>();
-  attractor = new Orb(width/2,height/2,0,0, 10);
+  attractor = new Orb(width/2,height/2,0,0, 20);
 }
 void mouseClicked() {
   //add a new Orb to the orbList, constructed as follows:
