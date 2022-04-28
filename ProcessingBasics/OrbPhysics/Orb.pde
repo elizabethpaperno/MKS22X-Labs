@@ -24,6 +24,7 @@ public class Orb {
     fill(c);
     
     ellipse(x, y, radius, radius);
+    stroke(0);
     line(x, y, x + 5 * xSpeed, y + 5 * ySpeed); 
   }
 
@@ -40,14 +41,15 @@ public class Orb {
       if (y + radius/2 >= height || y - radius/2<= 0){
         ySpeed = -1 * ySpeed;
       }
+      if (g){
+        ySpeed = 0.15 + ySpeed;
+      }
       y += ySpeed;
     //Part 4
     //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
     //You don't need a variable for this if every object experiences the same
     //gravitational constant.
-    if (g){
-      ySpeed = 0.15 + ySpeed;
-    }
+   
   }
   
   void attract(Orb other){
@@ -62,12 +64,14 @@ public class Orb {
   void attractSpring(Orb other){
     float dist = dist(x,y, other.x, other.y);
     float force = (dist - SPRING_LENGTH) * SPRING_CONSTANT; 
-    xSpeed += force * ((this.x - other.x)/dist);
-    xSpeed *= SPRING_DAMPEN;
-    ySpeed += force * ((this.y - other.y)/dist);
-    ySpeed *= SPRING_DAMPEN;
+    other.xSpeed += force * ((x - other.x )/dist);
+    other.xSpeed *= SPRING_DAMPEN;
+    other.x += other.xSpeed;
+    other.ySpeed += force * ((y - other.y)/dist);
+    other.ySpeed *= SPRING_DAMPEN; 
     if (g){
-      ySpeed += 0.15;
+      other.ySpeed += 0.15;
     }
+    other.y += other.ySpeed;
   }
 }

@@ -59,13 +59,33 @@ void draw() {
   
   if (MODE == SPRING){
     for (Orb o : orbList) {
-      o.attractSpring(attractor);
+      attractor.attractSpring(o);
       o.display();
     }
   }
+  
+  fill(255); 
+  stroke(255);
+  rect(0,0, 400, 20); 
   fill(0);
-  text(frameRate, 20, 20);
-  text(MODE, 20, 10);
-  text(frameRate, 20, 20);
-  text(orbList.size(), 20, 40);
+  if (MODE == GRAVITY){
+    text("MODE: GRAVITY", 20, 10);
+  } else if (MODE == SPRING){
+    text("MODE: SPRING", 20, 10);
+  } else {
+    text("MODE: ORBIT", 20, 10);
+  } 
+  if (g) {
+    text("Gravity: On", 160, 10);
+  } else {
+     text("Gravity: Off", 160, 10);
+  }
+  if (b) {
+     text("Background: Off", 260, 10);
+  }else{
+    text("Background: On", 260, 10);
+  }
+  
+  //text(frameRate, 20, 20);
+  //text(orbList.size(), 20, 40);
 }
