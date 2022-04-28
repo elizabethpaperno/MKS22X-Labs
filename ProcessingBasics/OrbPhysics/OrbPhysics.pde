@@ -1,14 +1,14 @@
 final float SPRING_LENGTH = 130; 
-final float STRING_DAMPEN = .995;
+final float SPRING_DAMPEN = .995;
 final float SPRING_CONSTANT = 0.005;
 final int GRAVITY = 0;
 final int ORBIT = 1;
-final int SPRING = 1;
+final int SPRING = 2;
 ArrayList<Orb>orbList;
 Orb attractor;
-String MODE = "ORBIT"; 
+int MODE = 0; 
 
-boolean g = false; 
+boolean g = true; 
 boolean b = true; 
 void setup() {
   size(1000, 800);
@@ -27,7 +27,10 @@ void keyPressed() {
   if (keyCode == BACKSPACE) {
     orbList = new ArrayList<Orb>();;
   } else if (key == ' '){
-    MODE = (MODE % 3) + 1; 
+    MODE += 1; 
+    if (MODE == 3){
+      MODE = 0;
+    }
   } else if (key == 'g'){
     g = !g;
   } else if (key == 'b'){
@@ -56,7 +59,7 @@ void draw() {
   
   if (MODE == SPRING){
     for (Orb o : orbList) {
-      attractor.attractSpring(o);
+      o.attractSpring(attractor);
       o.display();
     }
   }
