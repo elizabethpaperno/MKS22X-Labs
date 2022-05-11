@@ -15,6 +15,7 @@ public class OrbList {
   */
   void add(OrbNode orb){
     //insert orb at the end of the list before the last node.
+    last.prev = orb;
   }
 
   /**
