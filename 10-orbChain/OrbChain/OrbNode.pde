@@ -28,7 +28,7 @@ public class OrbNode {
         line(x, y, next.x + 5, next.y + 5 ); 
       }
       if (prev != null){
-        line(x, y, next.x + 5, next.y + 5 ); 
+        line(x, y, prev.x + 5, prev.y + 5 ); 
       }
     }
 
@@ -49,8 +49,8 @@ public class OrbNode {
     void move() {
       //have prev and next apply spring force to this node;
       /*you write this part*/
-      springAttract(next);
-      springAttract(prev);
+      next.springAttract(this);
+      prev.springAttract(this);
       //apply velocity to position
       x+=dx;
       y+=dy;
