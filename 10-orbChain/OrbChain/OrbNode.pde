@@ -49,7 +49,8 @@ public class OrbNode {
     void move() {
       //have prev and next apply spring force to this node;
       /*you write this part*/
-
+      springAttract(next);
+      springAttract(prev);
       //apply velocity to position
       x+=dx;
       y+=dy;
