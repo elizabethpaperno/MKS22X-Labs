@@ -32,6 +32,14 @@ public class OrbList {
     current.prev = toBeAdded;
   }
   
+  OrbNode getNodeAt(int x, int y){
+    OrbNode current = first;
+    while (dist(current.x, current.y, x, y) != current.radius){
+      current = current.next;
+    }
+    return current;
+  }
+  
   /**
   *complete this method
   *process all nodes by running move.
