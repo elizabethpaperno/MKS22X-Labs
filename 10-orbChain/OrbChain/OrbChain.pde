@@ -17,19 +17,29 @@ void keyPressed(){
   if (key == '1'){
     SPRING_CONSTANT += .1 * SPRING_CONSTANT;
   } else if (key == '2'){
-    SPRING_CONSTANT -= .1 * SPRING_CONSTANT;
+    if (.9 *  SPRING_CONSTANT >= 0){
+      SPRING_CONSTANT -= .1 * SPRING_CONSTANT;
+    }
   } else if (key == '3'){
-    SPRING_DAMPEN += .1 * SPRING_DAMPEN;
+    if (1.1 * SPRING_DAMPEN <= 1){
+      SPRING_DAMPEN += .1 * SPRING_DAMPEN;
+    }
   } else if (key == '4'){
-    SPRING_DAMPEN -= .1 * SPRING_DAMPEN;
+    if (.9 *  SPRING_DAMPEN >= 0){
+      SPRING_DAMPEN -= .1 * SPRING_DAMPEN;
+    }
   } else if (key == '5'){
     SPRING_LENGTH += .1 * SPRING_LENGTH;
   } else if (key == '6'){
-     SPRING_LENGTH -= .1 * SPRING_LENGTH;
+    if (.9 *  SPRING_LENGTH >= 0){
+       SPRING_LENGTH -= .1 * SPRING_LENGTH;
+    }
   } else if (key == '7'){
     GRAVITY += .1 * GRAVITY;
   } else if (key == '8'){
-    GRAVITY -= .1 * GRAVITY;
+    if (.9 *  GRAVITY >= 0){
+      GRAVITY -= .1 * GRAVITY;
+    }
   } 
 }
 void draw() {
