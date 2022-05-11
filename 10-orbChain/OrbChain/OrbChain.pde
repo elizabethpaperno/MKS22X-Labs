@@ -7,7 +7,7 @@ static double GRAVITY = 0.35;
 static int add = 0;
 static int insert = 1; 
 static int delete = 2; 
-static int CLICK_MODE = insert;
+static int CLICK_MODE = add;
 
 OrbList orbs;
 void setup() {
@@ -50,14 +50,27 @@ void keyPressed(){
       GRAVITY -= .1 * GRAVITY;
     }
   } 
+  if (key == ' '){
+    CLICK_MODE += 1; 
+    if (CLICK_MODE == 3){
+      CLICK_MODE = 0;
+    }
+  }
 }
 void draw() {
   background(255);
   orbs.processAll();
   orbs.display();
-  text("SPRING_CONSTANT: " + SPRING_CONSTANT, 20, 10);
-  text("SPRING_DAMPEN: " + SPRING_DAMPEN, 220, 10); 
-  text("SPRING_LENGTH: " + SPRING_LENGTH, 420, 10); 
-  text("GRAVITY: " + GRAVITY, 620, 10);
+  if (CLICK_MODE == add){
+    text("clickmodes : Add(ToEnd)", 20, 20);
+  } else if (CLICK_MODE == insert){
+    text("clickmodes : Insert(atMouse)", 20, 20);
+  } else{
+    text("clickmodes : Delete(Closest)", 20, 20);
+  }
+  text("SPRING_CONSTANT: " + SPRING_CONSTANT, 20, 50);
+  text("SPRING_DAMPEN: " + SPRING_DAMPEN, 220, 50); 
+  text("SPRING_LENGTH: " + SPRING_LENGTH, 420, 50); 
+  text("GRAVITY: " + GRAVITY, 620, 50);
 }
    
