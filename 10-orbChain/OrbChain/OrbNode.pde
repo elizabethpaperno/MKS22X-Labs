@@ -25,9 +25,11 @@ public class OrbNode {
       //If next or previous exist, draw lines to them! (aim for slightly off center)
       /*you write this part*/
       if (next != null){
-        line(x, y, next.x + 5 * dx, next.y + 5 * dy); 
+        line(x, y, next.x + 5, next.y + 5 ); 
       }
-
+      if (prev != null){
+        line(x, y, next.x + 5, next.y + 5 ); 
+      }
     }
 
     void springAttract(OrbNode other) {
