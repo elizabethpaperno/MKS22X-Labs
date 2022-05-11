@@ -4,13 +4,22 @@ static float SPRING_DAMPEN = 0.990;
 static float SPRING_CONSTANT = 0.015;
 static int MODE = SPRING;
 static double GRAVITY = 0.35;
+static int add = 0;
+static int insert = 1; 
+static int delete = 2; 
+static int CLICK_MODE = insert;
+
 OrbList orbs;
 void setup() {
   size(1000, 800);
   orbs = new OrbList();
 }
 void mouseClicked() {
-  orbs.add(new OrbNode(mouseX,mouseY,0,0,30));
+  if (CLICK_MODE == add){
+    orbs.add(new OrbNode(mouseX,mouseY,0,0,30));
+  }else if(CLICK_MODE == insert){
+    orbs.add(mouseX,new OrbNode(mouseX,mouseY,0,0,30));
+  }
 }
 
 void keyPressed(){

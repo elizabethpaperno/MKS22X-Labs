@@ -20,7 +20,18 @@ public class OrbList {
     last.prev.next = orb;
     last.prev = orb;
   }
-
+  
+  void add(int xcor,OrbNode toBeAdded){
+    OrbNode current = first;
+    while(current.x < xcor){
+      current = current.next;
+    }
+    toBeAdded.prev = current.prev;
+    toBeAdded.next = current;
+    current.prev.next = toBeAdded;
+    current.prev = toBeAdded;
+  }
+  
   /**
   *complete this method
   *process all nodes by running move.
