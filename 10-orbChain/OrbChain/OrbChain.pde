@@ -36,5 +36,9 @@ void draw() {
   background(255);
   orbs.processAll();
   orbs.display();
+  text("SPRING_CONSTANT: " + SPRING_CONSTANT, 20, 10);
+  text("SPRING_DAMPEN: " + SPRING_DAMPEN, 160, 10); 
+  text("SPRING_LENGTH: " + SPRING_LENGTH, 300, 10); 
+  text("GRAVITY: " + GRAVITY, 440, 10);
 }
    
