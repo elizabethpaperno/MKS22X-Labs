@@ -20,7 +20,7 @@ public class OrbList {
     last.prev.next = orb;
     last.prev = orb;
   }
-  
+
   void add(int xcor,OrbNode toBeAdded){
     OrbNode current = first;
     while(current.x < xcor){
@@ -31,15 +31,22 @@ public class OrbList {
     current.prev.next = toBeAdded;
     current.prev = toBeAdded;
   }
-  
+
   OrbNode getNodeAt(int x, int y){
-    OrbNode current = first;
-    while (dist(current.x, current.y, x, y) != current.radius){
-      current = current.next;
+    for (OrbNode cur = first.next; cur.next != null; cur = cur.next){
+       if(dist(cur.x, cur.y, x, y) < cur.radius){
+          return cur; 
+       }
     }
-    return current;
+    return null;
   }
   
+  void delete(OrbNode target){
+    if (target != null){
+      target.next.prev = target.prev; 
+      target.prev.next = target.next;
+    }
+  }
   /**
   *complete this method
   *process all nodes by running move.
