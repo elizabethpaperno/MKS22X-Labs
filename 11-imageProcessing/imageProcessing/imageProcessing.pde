@@ -5,6 +5,7 @@ public class Kernel {
    *This implementation only allows 3x3 kernels
    */
   public Kernel(float[][]init) {
+    kernel = init; 
   }
 
   /**If part of the kernel is off of the image, return black, Otherwise
@@ -15,6 +16,16 @@ public class Kernel {
   color calcNewColor(PImage img, int x, int y) {
     //Hint: start by always returning black.
     //This will let you test your apply method right away!
+    float totRed = 0; 
+    float totGreen = 0; 
+    float totBlue = 0; 
+    for(int r = x - 1; r < x + 2; r++){
+      for (int c = y -1; c < y + 2; c++){
+        totRed += red(img.get(r,c)) * kernel[][]; 
+        totGreen += green(img.get(r,c)) * kernel[][]; 
+        totBlue += blue(img.get(r,c)) * kernel[][]; 
+      }
+    }
   }
 
   /**You must write this method that applies the kernel to the source,
