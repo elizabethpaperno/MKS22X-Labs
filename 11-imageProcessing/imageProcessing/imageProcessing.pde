@@ -26,6 +26,8 @@ public class Kernel {
         totBlue += blue(img.get(r,c)) * kernel[][]; 
       }
     }
+    color c = color(totRed, totGreen, totBlue);
+    img.set(x, y, c);
   }
 
   /**You must write this method that applies the kernel to the source,
