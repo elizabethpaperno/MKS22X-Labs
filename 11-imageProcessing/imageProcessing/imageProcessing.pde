@@ -21,7 +21,7 @@ public class Kernel {
     float totBlue = 0; 
     for (int i = - 1; i < 2; i++) {
       for (int j = -1; j < 2; j++) {
-        if (x + i <= 0 || y + j <= 0 || x + i >= img.width - 1 || y + j >= img.height - 1) {
+        if (x + i >= 0 || y + j >= 0 || x + i <= img.width - 1 || y + j <= img.height - 1) {
           totRed += red(img.get(x + i, y + j)) * kernel[i + 1][j + 1]; 
           totGreen += green(img.get(x + i, y + j)) * kernel[i + 1][j + 1]; 
           totBlue += blue(img.get(x + i, y + j)) * kernel[i + 1][j + 1];
@@ -49,6 +49,7 @@ public class Kernel {
     
     color c = color(totRed, totGreen, totBlue);
     return c;
+    
   }
 
   /**You must write this method that applies the kernel to the source,
@@ -68,6 +69,9 @@ Kernel[]kernels;
 int currentKernel;
 
 void setup() {
+  size(1450,500);
+  PImage car = loadImage("redcar.png");
+  PImage output = car.copy();
   currentKernel = 0;
   names = new String[]{
     "Identity", "Blur", "Sharpen", 
@@ -121,7 +125,17 @@ void setup() {
 
 void keyPressed(){
   currentKernel += 1;
-  if(currentKernel > kernels.length -1){
+  if(currentKernel > kernels.length - 1){
     currentKernel = 0;
   }
+}
+
+
+
+void draw(){
+  PImage car = loadImage("redcar.png");
+  PImage output = car.copy();
+  kernels[currentKernel].apply(car,output);
+  image(car,0,0);
+  image(output,car.width,0);
 }
