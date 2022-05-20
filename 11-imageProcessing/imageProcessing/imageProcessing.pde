@@ -5,7 +5,7 @@ public class Kernel {
    *This implementation only allows 3x3 kernels
    */
   public Kernel(float[][]init) {
-    kernel = init; 
+    kernel = init;
   }
 
   /**If part of the kernel is off of the image, return black, Otherwise
@@ -19,15 +19,34 @@ public class Kernel {
     float totRed = 0; 
     float totGreen = 0; 
     float totBlue = 0; 
-    for(int i = - 1; i < 2; i++){
-      for (int j = -1; j < 2; j++){
-        if (x != 0 && y != 0 && x != img.width - 1 && y != img.height - 1){
-          totRed += red(img.get(x + i, y + j)) * kernel[i][j]; 
-          totGreen += green(img.get(x + i, y + j)) * kernel[i][j]; 
-          totBlue += blue(img.get(x + i, y + j)) * kernel[i][j]; 
+    for (int i = - 1; i < 2; i++) {
+      for (int j = -1; j < 2; j++) {
+        if (x + i <= 0 || y + j <= 0 || x + i >= img.width - 1 || y + j >= img.height - 1) {
+          totRed += red(img.get(x + i, y + j)) * kernel[i + 1][j + 1]; 
+          totGreen += green(img.get(x + i, y + j)) * kernel[i + 1][j + 1]; 
+          totBlue += blue(img.get(x + i, y + j)) * kernel[i + 1][j + 1];
         }
       }
     }
+    if (totRed > 255){
+      totRed = 255;
+    } 
+    if (totGreen > 255){
+      totGreen = 255;
+    }
+    if (totBlue > 255){
+      totBlue = 255;
+    }
+    if (totRed < 0){
+      totRed = 0;
+    } 
+    if (totGreen < 0){
+      totGreen = 0;
+    }
+    if (totBlue < 0){
+      totBlue = 0;
+    }
+    
     color c = color(totRed, totGreen, totBlue);
     return c;
   }
@@ -35,31 +54,71 @@ public class Kernel {
   /**You must write this method that applies the kernel to the source,
    *and saves the data to the destination.*/
   void apply(PImage source, PImage destination) {
-    for (int r = 0; r < source.width; r++){
-      for (int c = 0; c < source.height; c++){
+    for (int r = 0; r < source.width; r++) {
+      for (int c = 0; c < source.height; c++) {
         color col = calcNewColor(source, r, c); 
-        destination.set(r,c, col); 
+        destination.set(r, c, col);
       }
-      
     }
   }
 }
 
+String[]names;
+Kernel[]kernels;
+int currentKernel;
+
 void setup() {
-  size(1450, 500);
-  PImage car = loadImage("redcar.png");
-  PImage output = car.copy();
-  Kernel k = new Kernel( new float[][] {
-    {-1, -1, -1}, 
-    {-1, 8, -1}, 
-    {-1, -1, -1}
-    } );
-  Kernel k2 = new Kernel( new float[][] {
-    {.11, .11, .11}, 
-    {.11, .11, .11}, 
-    {.11, .11, .11}
-    } );
-  k.apply(car, output);
-  image(car, 0, 0);
-  image(output, car.width, 0);
+  currentKernel = 0;
+  names = new String[]{
+    "Identity", "Blur", "Sharpen", 
+    "Outline", "Left Sobel", "Right Sobel", 
+    "Top Sobel", "Emboss"
+  };
+
+  kernels = new Kernel[] {
+    new Kernel( new float[][] {
+      {0, 0, 0}, 
+      {0, 1, 0}, 
+      {0, 0, 0}
+    }), 
+    new Kernel( new float[][] {
+      {.111, .111, .111}, 
+      {.111, .111, .111}, 
+      {.111, .111, .111}
+    }), 
+    new Kernel( new float[][] {
+      {0, -1, 0}, 
+      {-1, 5, -1}, 
+      {0, -1, 0}
+    }), 
+    new Kernel( new float[][] {
+      {-1, -1, -1}, 
+      {-1, 8, -1}, 
+      {-1, -1, -1}
+    }), 
+    new Kernel( new float[][] {
+      {1, 0, -1}, 
+      {2, 0, -2}, 
+      {1, 0, -1}
+    }), 
+    new Kernel( new float[][] {
+      {-1, 0, 1}, 
+      {-2, 0, 2}, 
+      {-1, 0, 1}
+    }), 
+    new Kernel( new float[][] {
+      {1, 2, 1}, 
+      {0, 0, 0}, 
+      {-1, -2, -1}
+    }), 
+    new Kernel( new float[][] {
+      {-2, -1, 0}, 
+      {-1, 1, 1}, 
+      {0, 1, 2}
+    })
+  };
+}
+
+void keyPressed(){
+  
 }
