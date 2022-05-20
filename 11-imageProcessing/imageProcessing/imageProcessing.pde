@@ -120,5 +120,8 @@ void setup() {
 }
 
 void keyPressed(){
-  
+  currentKernel += 1;
+  if(currentKernel > kernels.length -1){
+    currentKernel = 0;
+  }
 }
