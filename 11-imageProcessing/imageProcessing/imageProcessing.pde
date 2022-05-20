@@ -19,15 +19,17 @@ public class Kernel {
     float totRed = 0; 
     float totGreen = 0; 
     float totBlue = 0; 
-    for(int r = x - 1; r < x + 2; r++){
-      for (int c = y -1; c < y + 2; c++){
-        totRed += red(img.get(r,c)) * kernel[][]; 
-        totGreen += green(img.get(r,c)) * kernel[][]; 
-        totBlue += blue(img.get(r,c)) * kernel[][]; 
+    for(int i = - 1; i < 2; i++){
+      for (int j = -1; j < 2; j++){
+        if (x != 0 && y != 0 && x != img.width - 1 && y != img.height - 1){
+          totRed += red(img.get(x + i, y + j)) * kernel[i][j]; 
+          totGreen += green(img.get(x + i, y + j)) * kernel[i][j]; 
+          totBlue += blue(img.get(x + i, y + j)) * kernel[i][j]; 
+        }
       }
     }
     color c = color(totRed, totGreen, totBlue);
-    img.set(x, y, c);
+    return c;
   }
 
   /**You must write this method that applies the kernel to the source,
@@ -36,7 +38,7 @@ public class Kernel {
     for (int r = 0; r < source.width; r++){
       for (int c = 0; c < source.height; c++){
         color col = calcNewColor(source, r, c); 
-        destination.set(r,c,col); 
+        destination.set(r,c, col); 
       }
       
     }
